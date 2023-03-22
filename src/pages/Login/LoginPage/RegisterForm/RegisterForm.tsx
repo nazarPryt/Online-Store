@@ -1,8 +1,8 @@
 import React from 'react'
 
-import TextField from '@mui/material/TextField/TextField'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import s from '../LoginPage.module.scss'
 
 type Inputs = {
@@ -14,6 +14,7 @@ export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, touchedFields, isDirty, isValid },
   } = useForm<Inputs>({
     defaultValues: {
@@ -29,7 +30,7 @@ export const RegisterForm = () => {
   return (
     <form className={s.formWrap} onSubmit={handleSubmit(onSubmit)}>
       <h3>Register Here</h3>
-      <TextField
+      <input
         {...register('email', {
           required: true,
           pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
@@ -37,14 +38,21 @@ export const RegisterForm = () => {
         type={'email'}
         placeholder="&#xf2bd;   Email"
       />
-
-      <TextField
+      <input
         {...register('password', { required: true, minLength: 3 })}
         type={'password'}
         placeholder="&#xf084;   Password"
       />
-      <TextField
-        {...register('confirmPassword', { required: true, minLength: 3 })}
+      <input
+        {...register('confirmPassword', {
+          required: true,
+          minLength: 3,
+          validate: (val: string) => {
+            if (watch('password') != val) {
+              return 'Your passwords do no match'
+            }
+          },
+        })}
         type={'password'}
         placeholder="&#xf084;   Confirm Password"
       />
