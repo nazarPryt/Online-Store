@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
+    "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -14,9 +15,14 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/react-redux": "^7.1.25",
+    "axios": "^1.3.4",
+    "postcss-scss": "^4.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
+    "sass": "^1.59.3",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
@@ -61,5 +67,8 @@
     "stylelint": "^14.10.0",
     "stylelint-config-clean-order": "^0.9.0",
     "stylelint-prettier": "^2.0.0"
+  },
+  "resolutions": {
+    "postcss": "^8.3.11"
   }
 }
