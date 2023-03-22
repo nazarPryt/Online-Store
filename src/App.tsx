@@ -1,14 +1,9 @@
 import React from 'react'
-import './App.css'
+
+import { LoginPage } from './pages/Login/LoginPage/LoginPage'
 
 function App() {
-  return (
-    <div>
-      <div>
-        <span>dfdf</span>
-      </div>
-    </div>
-  )
+  return <LoginPage />
 }
 
 export default App
