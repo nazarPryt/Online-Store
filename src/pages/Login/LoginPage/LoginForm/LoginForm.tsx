@@ -3,13 +3,14 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { setLoginAccordionAC } from '../../../../store/app/app.slice'
+import { logInTC } from '../../../../store/auth/auth.actions'
 import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import s from '../LoginPage.module.scss'
 
-type Inputs = {
-  email: string
-  password: string
+const defaultValues = {
+  identifier: '' as string,
+  password: '' as string,
 }
 
 export const LoginForm = () => {
@@ -19,14 +20,12 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors, touchedFields, isDirty, isValid },
-  } = useForm<Inputs>({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
+  } = useForm<typeof defaultValues>({
+    defaultValues,
   })
-  const onSubmit: SubmitHandler<Inputs> = (data) =>
-    alert(JSON.stringify(data, null, 2))
+  const onSubmit: SubmitHandler<typeof defaultValues> = (data) => {
+    dispatch(logInTC(data))
+  }
 
   const handleSetAccordion = () => {
     dispatch(setLoginAccordionAC({ value: 'forgotPass' }))
@@ -37,16 +36,16 @@ export const LoginForm = () => {
       <h3>Login Here</h3>
       <div>
         <input
-          {...register('email', {
+          {...register('identifier', {
             required: true,
             pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
           })}
           type={'email'}
           placeholder="&#xF199;   Email"
         />
-        {errors.email?.message && <ErrorMessage text={'Email is not valid'} />}
-        {isDirty ||
-          (touchedFields.email && <ErrorMessage text={'Email is required!'} />)}
+        {errors.identifier && <ErrorMessage text={'Email is not valid'} />}
+        {/*{isDirty ||*/}
+        {/*  (touchedFields.email && <ErrorMessage text={'Email is required!'} />)}*/}
       </div>
 
       <input
