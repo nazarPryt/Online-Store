@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Navigate } from 'react-router-dom'
+
 import { useAppSelector } from '../../../utils/hooks/redux-hooks'
 
 import LoginPageBackGround from './../../../assets/LoginPageBackGround.jpg'
@@ -10,7 +12,12 @@ import s from './LoginPage.module.scss'
 import { RegisterForm } from './RegisterForm/RegisterForm'
 
 export const LoginPage = () => {
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
   const accordion = useAppSelector((state) => state.app.loginAccordion)
+
+  if (isLoggedIn) {
+    return <Navigate to={`/`} replace />
+  }
 
   return (
     <section className={s.wrapper}>
