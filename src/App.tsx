@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { Initialization } from './components/Initialization/Initialization'
 import { Pages } from './pages/pages'
-import { initializeAppTC } from './store/auth/auth.actions'
+import { initializeAppTC } from './store/auth/auth.thunks'
 import { useAppDispatch, useAppSelector } from './utils/hooks/redux-hooks'
 
 function App() {

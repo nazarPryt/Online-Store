@@ -6,12 +6,16 @@ import { useAppSelector } from '../utils/hooks/redux-hooks'
 
 import { NotFoundPage } from './404/NotFoundPage'
 import { CatalogPage } from './Catalog/CatalogPage'
+import { Layout } from './Layout/Layout'
 import { LoginPage } from './Login/LoginPage/LoginPage'
+import { ProductPage } from './ProductPage/ProductPage'
+import { UserPage } from './User/UserPage'
 
 export const PATH = {
   login: '/login',
   user: '/user',
-  catalog: '/catalog',
+  catalog: '/catalog/:id',
+  product: '/product/:id',
 }
 
 export const Pages = () => {
@@ -26,11 +30,13 @@ export const Pages = () => {
   return (
     <Routes>
       <Route element={<RequireAuth />}>
-        <Route path={PATH.user} element={<LoginPage />} />
+        <Route path={PATH.user} element={<UserPage />} />
       </Route>
-
+      <Route element={<Layout />}>
+        <Route path={PATH.catalog} element={<CatalogPage />} />
+        <Route path={PATH.product} element={<ProductPage />} />
+      </Route>
       <Route path={PATH.login} element={<LoginPage />} />
-      <Route path={PATH.catalog} element={<CatalogPage />} />
       <Route path={'/'} element={<Navigate to={PATH.catalog} />} />
       <Route path={'*'} element={<NotFoundPage />} />
     </Routes>

@@ -1,0 +1,8 @@
+.wrapper {
+    grid-area: sidebar;
+
+    width: 300px;
+    min-height: calc(100vh - 61px);
+
+    background-color: chocolate;
+}

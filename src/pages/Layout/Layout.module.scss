@@ -1,0 +1,10 @@
+.wrapper {
+    display: grid;
+    grid-template-areas:
+    "header header header"
+    "sidebar main  main"
+    "footer footer footer";
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: auto;
+
+}

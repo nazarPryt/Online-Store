@@ -3,7 +3,7 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { setLoginAccordionAC } from '../../../../store/app/app.slice'
-import { logInTC } from '../../../../store/auth/auth.actions'
+import { logInTC } from '../../../../store/auth/auth.thunks'
 import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import s from '../LoginPage.module.scss'

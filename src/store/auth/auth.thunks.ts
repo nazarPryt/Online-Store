@@ -28,6 +28,8 @@ export const initializeAppTC = createAsyncThunk(
       thunkAPI.dispatch(setIsInitialized({ value: true }))
     } catch (e) {
       console.log(e)
+    } finally {
+      thunkAPI.dispatch(setIsInitialized({ value: true }))
     }
   }
 )
