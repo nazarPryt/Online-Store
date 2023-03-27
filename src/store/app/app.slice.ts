@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type LoginAccordionType = 'login' | 'register' | 'forgotPass'
+export type ThemeAppType = 'light' | 'dark'
+const initialState = {
+  loginAccordion: 'login' as LoginAccordionType,
+  themeApp: 'dark' as ThemeAppType,
+}
 
 export const appSlice = createSlice({
   name: 'app',
-  initialState: {
-    loginAccordion: 'login' as LoginAccordionType,
-  },
+  initialState,
   reducers: {
     setLoginAccordionAC: (
       state,
@@ -14,7 +17,10 @@ export const appSlice = createSlice({
     ) => {
       state.loginAccordion = action.payload.value
     },
+    setThemeAppAC: (state, action: PayloadAction<{ value: ThemeAppType }>) => {
+      state.themeApp = action.payload.value
+    },
   },
 })
-export const { setLoginAccordionAC } = appSlice.actions
+export const { setLoginAccordionAC, setThemeAppAC } = appSlice.actions
 export const appReducer = appSlice.reducer
