@@ -23,17 +23,17 @@ export const SideBar = () => {
   return (
     <aside className={s.wrapper}>
       <Box>
-        <Typography>Product Categories</Typography>
+        <Typography variant={'h6'}>Categories</Typography>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox defaultChecked />}
-            label="Label"
+            label="Phones"
           />
-          <FormControlLabel control={<Checkbox />} label="Disabled" />
+          <FormControlLabel control={<Checkbox />} label="Tablets" />
         </FormGroup>
       </Box>
       <Box>
-        <Typography>Filter by price</Typography>
+        <Typography variant={'h6'}>Filter by price</Typography>
         <Slider
           getAriaLabel={() => 'Temperature range'}
           value={value}
@@ -44,7 +44,7 @@ export const SideBar = () => {
         />
       </Box>
       <Box>
-        <Typography>Sort By price</Typography>
+        <Typography variant={'h6'}>Sort By price</Typography>
         <RadioGroup
           aria-labelledby="demo-controlled-radio-buttons-group"
           name="controlled-radio-buttons-group"

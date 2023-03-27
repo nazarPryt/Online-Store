@@ -20,6 +20,8 @@ import { PATH } from '../../pages/pages'
 import { setThemeAppAC } from '../../store/app/app.slice'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
+import s from './Header.module.scss'
+
 export const Header = () => {
   const dispatch = useAppDispatch()
   const theme = useAppSelector((state) => state.app.themeApp)
@@ -121,7 +123,7 @@ export const Header = () => {
   )
 
   return (
-    <Box sx={{ flexGrow: 1, gridArea: 'header' }}>
+    <header className={s.wrapper}>
       <AppBar position="static">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <IconButton
@@ -190,6 +192,6 @@ export const Header = () => {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-    </Box>
+    </header>
   )
 }

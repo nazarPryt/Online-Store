@@ -1,8 +1,16 @@
 .wrapper {
-    grid-area: sidebar;
+  position: fixed;
+  top: 60px;
 
-    width: 300px;
-    min-height: calc(100vh - 61px);
+  display: flex;
+  grid-area: sidebar;
+  flex-direction: column;
+  gap: 20px;
 
-    background-color: chocolate;
+  width: 200px;
+  //min-height: calc(100vh - 61px);
+  height: 100%;
+  padding: 20px;
+
+  background-color: seashell;
 }

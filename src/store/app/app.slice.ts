@@ -4,7 +4,7 @@ export type LoginAccordionType = 'login' | 'register' | 'forgotPass'
 export type ThemeAppType = 'light' | 'dark'
 const initialState = {
   loginAccordion: 'login' as LoginAccordionType,
-  themeApp: 'dark' as ThemeAppType,
+  themeApp: 'light' as ThemeAppType,
 }
 
 export const appSlice = createSlice({

@@ -1,5 +1,11 @@
 import React from 'react'
 
+import { ProductCard } from '../../components/ProductCard/ProductCard'
+
 export const CatalogPage = () => {
-  return <div>CatalogPage</div>
+  return (
+    <div>
+      <ProductCard />
+    </div>
+  )
 }
