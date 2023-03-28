@@ -2,10 +2,10 @@ import { instance } from './instance'
 
 export const authService = {
   logIn(data: LoginDataType) {
-    return instance.post<ResponseType>('auth/local', data)
+    return instance.post<ResponseType>('/api/auth/local', data)
   },
   me() {
-    return instance.get<UserDataResponse>('users/me')
+    return instance.get<UserDataResponse>('/api/users/me')
   },
 }
 

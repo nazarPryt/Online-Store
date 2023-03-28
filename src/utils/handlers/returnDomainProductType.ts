@@ -12,7 +12,9 @@ export const returnDomainProductType = (
     title: data.data.attributes.title,
     price: data.data.attributes.price,
     oldPrice: data.data.attributes.oldPrice,
-    img: data.data.attributes.img.data[0].attributes.url,
+    img:
+      process.env.REACT_APP_LOCAL_URL +
+      data.data.attributes.img.data[0].attributes.url,
     quantity: 1,
   }
 }

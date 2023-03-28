@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import { useParams } from 'react-router-dom'
 
+import { addToCartAC } from '../../store/cart/cart.slice'
 import { getSingleProductTC } from '../../store/product/product.thunk'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
@@ -32,17 +33,12 @@ export const SingleProductPage = () => {
   }, [productId])
 
   const handleAddToCart = () => {
-    // const product: CartProductType = {
-    //   id: data.id,
-    //   attributes: {
-    //     name: data.attributes.name,
-    //     description: data.attributes.description,
-    //     price: data.attributes.price,
-    //     // img: data.attributes.img.data.attributes.url,
-    //     quantity,
-    //   },
-    // }
-    // dispatch(addToCartAC({ product: {} }))
+    const product = {
+      ...data,
+      quantity,
+    }
+
+    dispatch(addToCartAC({ product }))
   }
 
   return (
@@ -77,8 +73,9 @@ export const SingleProductPage = () => {
           </IconButton>
         </Box>
         <Button
+          onClick={handleAddToCart}
           variant="contained"
-          startIcon={<AddShoppingCartIcon onClick={handleAddToCart} />}>
+          startIcon={<AddShoppingCartIcon />}>
           Add to Cart
         </Button>
       </Box>

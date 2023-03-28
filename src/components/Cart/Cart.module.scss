@@ -1,5 +1,7 @@
 .cart {
+    max-width: 400px;
     padding: 20px;
+
 .emptyText {
     margin-bottom: 20px;
 
@@ -43,12 +45,8 @@
                 color: #2879fe;
             }
         }
+        button{
 
-        .delete {
-            cursor: pointer;
-
-            font-size: 30px;
-            color: red;
         }
     }
 

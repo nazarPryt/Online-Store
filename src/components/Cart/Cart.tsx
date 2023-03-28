@@ -1,6 +1,7 @@
 import React from 'react'
 
 import DeleteIcon from '@mui/icons-material/Delete'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
@@ -11,13 +12,13 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 import s from './Cart.module.scss'
 
 export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
-  const products = useAppSelector((state) => state.cart.items)
+  const cartItems = useAppSelector((state) => state.cart.items)
   const dispatch = useAppDispatch()
 
   const totalPrice = () => {
     let total = 0
 
-    products.forEach((item) => {
+    cartItems.forEach((item) => {
       total += item.quantity * item.price
     })
 
@@ -26,12 +27,14 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
 
   return (
     <Drawer anchor={'right'} open={props.isOpen} onClose={props.handleClose}>
-      <div className={s.cart}>
+      <Box className={s.cart}>
         <h1>Products in your cart</h1>
-        {products && <h2 className={s.emptyText}>Your cart is empty</h2>}
-        {products?.map((item) => (
+        {!cartItems.length && (
+          <h2 className={s.emptyText}>Your cart is empty</h2>
+        )}
+        {cartItems.map((item) => (
           <div className={s.item} key={item.id}>
-            {/*<img src={} alt="" />*/}
+            <img src={item.img} alt="productPhoto" />
             <div className={s.details}>
               <h1>{item.title}</h1>
               <p>{item.description.substring(0, 100)}</p>
@@ -39,9 +42,7 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
                 {item.quantity} x ${item.price}
               </div>
             </div>
-            <IconButton
-              aria-label={s.delete}
-              onClick={() => dispatch(removeItemAC({ id: item.id }))}>
+            <IconButton onClick={() => dispatch(removeItemAC({ id: item.id }))}>
               <DeleteIcon />
             </IconButton>
           </div>
@@ -50,11 +51,11 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
           <span>SUBTOTAL</span>
           <span>${totalPrice()}</span>
         </div>
-        <Button disabled={!!products.length}>Pay</Button>
+        <Button disabled={!cartItems.length}>Pay</Button>
         <span className={s.reset} onClick={() => dispatch(resetCartAC())}>
-          Reset Cart
+          Remove All
         </span>
-      </div>
+      </Box>
     </Drawer>
   )
 }

@@ -2,7 +2,7 @@ import { instance } from './instance'
 
 export const productService = {
   getSingleProduct(id: number) {
-    return instance.get<ProductDataType>(`products/${id}`, {
+    return instance.get<ProductDataType>(`/api/products/${id}`, {
       params: { populate: '*' },
     })
   },
