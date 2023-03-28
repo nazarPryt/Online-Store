@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import { appReducer } from './app/app.slice'
 import { authReducer } from './auth/auth.slice'
+import { cartReducer } from './cart/cart.slice'
 import { productReducer } from './product/product.slice'
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     auth: authReducer,
     app: appReducer,
     product: productReducer,
+    cart: cartReducer,
   },
 })
 

@@ -1,4 +1,3 @@
-import { LoginDataType, ResponseType, UserDataResponse } from './authService'
 import { instance } from './instance'
 
 export const productService = {
@@ -10,7 +9,7 @@ export const productService = {
 ///  Types   ///
 export type SingleProductType = {
   data: SingleProductTypeData
-  meta: SingleProductTypeMeta
+  meta: {}
 }
 export type SingleProductTypeDataAttributes = {
   createdAt: string
@@ -24,7 +23,7 @@ export type SingleProductTypeData = {
   id: number
   attributes: SingleProductTypeDataAttributes
 }
-export type SingleProductTypeMeta = {}
+
 // export type ProductDataType = {
 //   data: ProductDataTypeData[]
 //   meta: ProductDataTypeMeta
