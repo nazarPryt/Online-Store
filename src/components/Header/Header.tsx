@@ -26,6 +26,7 @@ import s from './Header.module.scss'
 export const Header = () => {
   const dispatch = useAppDispatch()
   const theme = useAppSelector((state) => state.app.themeApp)
+  const cartItems = useAppSelector((state) => state.cart.items)
 
   const [isChartOpen, setIsChartOpen] = useState(false)
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
@@ -55,13 +56,7 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
 
-          <NavLink
-            to={PATH.catalog}
-            style={{
-              textDecoration: 'none',
-              color: 'white',
-              fontSize: '25px',
-            }}>
+          <NavLink to={PATH.catalog} className={s.logo}>
             NAZAR-SHOP
           </NavLink>
 
@@ -83,7 +78,7 @@ export const Header = () => {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit">
-              <Badge badgeContent={1} color="error">
+              <Badge badgeContent={cartItems.length} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>

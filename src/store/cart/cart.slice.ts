@@ -1,33 +1,44 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { CartProductType } from './cart.thunks'
+export type DomainProductType = {
+  id: number
+  title: string
+  description: string
+  price: number
+  oldPrice: number
+  category: string
+  available: boolean
+  img: string
+  quantity: number
+}
 
 const initialState = {
-  products: [] as CartProductType[],
+  items: [] as DomainProductType[],
 }
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCartAC: (state, action) => {
-      const item = state.products.find(
-        (item) => item.data.id === action.payload.id
+    addToCartAC: (
+      state,
+      action: PayloadAction<{ product: DomainProductType }>
+    ) => {
+      const item = state.items.find(
+        (item) => item.id === action.payload.product.id
       )
 
       if (item) {
-        item.quantity += action.payload.quantity
+        item.quantity += action.payload.product.quantity
       } else {
-        state.products.push(action.payload)
+        state.items.push(action.payload.product)
       }
     },
     removeItemAC: (state, action: PayloadAction<{ id: number }>) => {
-      state.products = state.products.filter(
-        (item) => item.data.id !== action.payload.id
-      )
+      state.items = state.items.filter((item) => item.id !== action.payload.id)
     },
     resetCartAC: (state) => {
-      state.products = []
+      state.items = []
     },
   },
 })

@@ -8,7 +8,7 @@ import { NotFoundPage } from './404/NotFoundPage'
 import { CatalogPage } from './Catalog/CatalogPage'
 import { Layout } from './Layout/Layout'
 import { LoginPage } from './Login/LoginPage/LoginPage'
-import { ProductPage } from './ProductPage/ProductPage'
+import { SingleProductPage } from './SingleProductPage/SingleProductPage'
 import { UserPage } from './User/UserPage'
 
 export const PATH = {
@@ -34,7 +34,7 @@ export const Pages = () => {
       </Route>
       <Route element={<Layout />}>
         <Route path={PATH.catalog} element={<CatalogPage />} />
-        <Route path={PATH.product} element={<ProductPage />} />
+        <Route path={PATH.product} element={<SingleProductPage />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
       <Route path={'/'} element={<Navigate to={PATH.catalog} />} />

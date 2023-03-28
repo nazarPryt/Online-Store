@@ -11,14 +11,14 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 import s from './Cart.module.scss'
 
 export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
-  const products = useAppSelector((state) => state.cart.products)
+  const products = useAppSelector((state) => state.cart.items)
   const dispatch = useAppDispatch()
 
   const totalPrice = () => {
     let total = 0
 
     products.forEach((item) => {
-      total += item.quantity * item.data.attributes.price
+      total += item.quantity * item.price
     })
 
     return total.toFixed(2)
@@ -30,18 +30,18 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
         <h1>Products in your cart</h1>
         {products && <h2 className={s.emptyText}>Your cart is empty</h2>}
         {products?.map((item) => (
-          <div className={s.item} key={item.data.id}>
+          <div className={s.item} key={item.id}>
             {/*<img src={} alt="" />*/}
             <div className={s.details}>
-              <h1>{item.data.attributes.name}</h1>
-              <p>{item.data.attributes.description.substring(0, 100)}</p>
+              <h1>{item.title}</h1>
+              <p>{item.description.substring(0, 100)}</p>
               <div className={s.price}>
-                {item.quantity} x ${item.data.attributes.price}
+                {item.quantity} x ${item.price}
               </div>
             </div>
             <IconButton
               aria-label={s.delete}
-              onClick={() => dispatch(removeItemAC({ id: item.data.id }))}>
+              onClick={() => dispatch(removeItemAC({ id: item.id }))}>
               <DeleteIcon />
             </IconButton>
           </div>

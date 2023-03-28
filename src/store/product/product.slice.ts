@@ -1,17 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { SingleProductTypeDataAttributes } from '../../services/productService'
+import { DomainProductType } from '../cart/cart.slice'
 
 const initialState = {
-  productItem: {} as SingleProductTypeDataAttributes,
+  productItem: {} as DomainProductType,
 }
 
 export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    setProductAC: (state, action: PayloadAction<{ data: any }>) => {
-      state.productItem = action.payload.data
+    setProductAC: (
+      state,
+      action: PayloadAction<{ domainData: DomainProductType }>
+    ) => {
+      state.productItem = action.payload.domainData
     },
   },
 })

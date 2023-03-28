@@ -11,11 +11,12 @@ import { useParams } from 'react-router-dom'
 import { getSingleProductTC } from '../../store/product/product.thunk'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
-import s from './ProductPage.module.scss'
+import s from './SingleProductPage.module.scss'
 
-export const ProductPage = () => {
+export const SingleProductPage = () => {
   const data = useAppSelector((state) => state.product.productItem)
   const dispatch = useAppDispatch()
+
   const productId = useParams().id
   const [selectedImg, setSelectedImg] = useState(0)
   const [quantity, setQuantity] = useState(1)
@@ -30,6 +31,20 @@ export const ProductPage = () => {
     }
   }, [productId])
 
+  const handleAddToCart = () => {
+    // const product: CartProductType = {
+    //   id: data.id,
+    //   attributes: {
+    //     name: data.attributes.name,
+    //     description: data.attributes.description,
+    //     price: data.attributes.price,
+    //     // img: data.attributes.img.data.attributes.url,
+    //     quantity,
+    //   },
+    // }
+    // dispatch(addToCartAC({ product: {} }))
+  }
+
   return (
     <section className={s.product}>
       <Box className={s.left}>
@@ -43,7 +58,7 @@ export const ProductPage = () => {
       </Box>
 
       <Box className={s.right}>
-        <h1>{data.name}</h1>
+        <h1>{data.title}</h1>
         <span>${data.price}</span>
         <p>{data.description}</p>
         <Box className={s.quantity}>
@@ -61,7 +76,9 @@ export const ProductPage = () => {
             <AddIcon />
           </IconButton>
         </Box>
-        <Button variant="contained" startIcon={<AddShoppingCartIcon />}>
+        <Button
+          variant="contained"
+          startIcon={<AddShoppingCartIcon onClick={handleAddToCart} />}>
           Add to Cart
         </Button>
       </Box>
