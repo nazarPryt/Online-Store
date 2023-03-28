@@ -12,9 +12,9 @@ export const Layout = () => {
     <div className={s.wrapper}>
       <Header />
       <SideBar />
-      <div className={s.outlet}>
+      <main className={s.outlet}>
         <Outlet />
-      </div>
+      </main>
       <Footer />
     </div>
   )

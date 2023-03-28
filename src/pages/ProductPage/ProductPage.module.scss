@@ -1,0 +1,41 @@
+.product{
+    display: flex;
+    gap: 50px;
+
+    padding: 10px;
+
+    .left {
+        display: flex;
+        flex: 1;
+        gap: 20px;
+
+        .images {
+            flex: 1;
+
+            img{
+                cursor: pointer;
+
+                height: 150px;
+                margin-bottom: 10px;
+
+                object-fit: cover;
+            }
+        }
+        .mainImg {
+            flex: 5;
+
+            img{
+                max-height: 400px;
+
+                object-fit: cover;
+            }
+        }
+    }
+
+    .right {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 10px;
+    }
+}

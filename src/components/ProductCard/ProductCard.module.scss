@@ -1,0 +1,15 @@
+.nameFavo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.imgBox {
+  img {
+  }
+}
+.CardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-content: space-between;
+}
