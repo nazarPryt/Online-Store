@@ -6,12 +6,14 @@ import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 
 import paymentGetWays from '../../assets/payment-getways.png'
+import { DiscountSection } from '../DiscountSection/DiscountSection'
 
 import { FooterMui } from './components/FooterMui'
 import s from './Footer.module.scss'
 export const Footer = () => {
   return (
     <FooterMui className={s.wrapper}>
+      <DiscountSection />
       <Container>
         <div className={s.footerNav}>
           <div>
