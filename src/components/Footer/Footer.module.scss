@@ -1,11 +1,47 @@
 .wrapper {
   grid-area: footer;
 
-  height: 50px;
   margin-left: 200px;
+  padding: 10px 0;
 
-  color: white;
-  text-align: center;
+}
+.inner {
+  background-color: red;
+}
+.footerNav{
+  display: flex;
+  justify-content: space-between;
 
-  background-color: cornflowerblue;
+  margin-bottom: 10px;
+
+  div {
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+}
+.footerBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 900px) {
+  .footerBottom {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  .footerNav {
+    flex-wrap: wrap;
+    gap: 20px;
+
+    div{
+      flex:auto;
+    }
+  }
 }

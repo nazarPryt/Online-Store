@@ -2,11 +2,12 @@
   display: grid;
   grid-template-areas:
     'header header header'
-    'sidebar outlet  outlet'
-    'footer footer footer';
+    'sidebar outlet outlet'
+    'sidebar footer footer';
   grid-template-columns: auto 1fr 1fr;
   grid-template-rows: 60px auto auto;
 }
+
 .outlet {
   grid-area: outlet;
 

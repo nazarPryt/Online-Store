@@ -42,7 +42,9 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
                 {item.quantity} x ${item.price}
               </div>
             </div>
-            <IconButton onClick={() => dispatch(removeItemAC({ id: item.id }))}>
+            <IconButton
+              size={'small'}
+              onClick={() => dispatch(removeItemAC({ id: item.id }))}>
               <DeleteIcon />
             </IconButton>
           </div>
@@ -51,7 +53,9 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
           <span>SUBTOTAL</span>
           <span>${totalPrice()}</span>
         </div>
-        <Button disabled={!cartItems.length}>Pay</Button>
+        <Button disabled={!cartItems.length} variant={'contained'}>
+          Pay
+        </Button>
         <span className={s.reset} onClick={() => dispatch(resetCartAC())}>
           Remove All
         </span>
