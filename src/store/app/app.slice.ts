@@ -13,7 +13,7 @@ export type NotificationType = {
 }
 const initialState = {
   loginAccordion: 'login' as LoginAccordionType,
-  themeApp: 'light' as ThemeAppType,
+  themeApp: 'dark' as ThemeAppType,
   status: 'idle' as AppStatusType,
   notifications: [] as NotificationType[],
 }

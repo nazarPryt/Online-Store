@@ -5,6 +5,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import { useAppSelector } from '../utils/hooks/redux-hooks'
 
 import { NotFoundPage } from './404/NotFoundPage'
+import { AboutUs } from './AboutUs/AboutUs'
 import { CatalogPage } from './Catalog/CatalogPage'
 import { Layout } from './Layout/Layout'
 import { LoginPage } from './Login/LoginPage/LoginPage'
@@ -14,6 +15,7 @@ import { UserPage } from './User/UserPage'
 export const PATH = {
   login: '/login',
   user: '/user',
+  aboutUs: '/about',
   catalog: '/catalog/:id',
   product: '/product/:id',
 }
@@ -37,6 +39,7 @@ export const Pages = () => {
         <Route path={PATH.product} element={<SingleProductPage />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
+      <Route path={PATH.aboutUs} element={<AboutUs />} />
       <Route path={'/'} element={<Navigate to={PATH.catalog} />} />
       <Route path={'*'} element={<NotFoundPage />} />
     </Routes>
