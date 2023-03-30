@@ -14,13 +14,16 @@ import s from './ProductCard.module.scss'
 type ProductCardType = {}
 export const ProductCard = (props: any) => {
   const available = true
+  const oldPrice = 700
   const favorite = false
+  const text =
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque autem dicta distinctio dolores eaque inventore labore laudantium, nesciunt quidem? A ab eveniet expedita facere fugit iste reprehenderit suscipit temporibus.'
 
   return (
     <Card
       sx={{
         maxWidth: 250,
-        maxHeight: 400,
+        maxHeight: 500,
         overflow: 'hidden',
       }}>
       <CardContent className={s.CardContent}>
@@ -29,7 +32,11 @@ export const ProductCard = (props: any) => {
         </Box>
         <Typography variant={'h5'}>IPhone</Typography>
         <Box className={s.nameFavo}>
-          <Typography sx={{ fontSize: 20 }}>56$</Typography>
+          <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>56$</Typography>
+          <Typography
+            sx={{ fontSize: 20, textDecoration: 'line-through', opacity: 0.5 }}>
+            ${oldPrice}
+          </Typography>
           <IconButton
             size="large"
             color={favorite ? 'secondary' : 'primary'}
@@ -52,15 +59,7 @@ export const ProductCard = (props: any) => {
           startIcon={<AddShoppingCartIcon />}>
           Add to Cart
         </Button>
-        <Typography>
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like. This impressive paella is a perfect party dish
-          and a fun meal to cook together with your guests. Add 1 cup of frozen
-          peas along with the mussels, if you like. This impressive paella is a
-          perfect party dish and a fun meal to cook together with your guests.
-          Add 1 cup of frozen peas along with the mussels, if you like.
-        </Typography>
+        <Typography component="p">{text.substring(0, 100)}...</Typography>
       </CardContent>
     </Card>
   )

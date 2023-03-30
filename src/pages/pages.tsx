@@ -11,11 +11,13 @@ import { Layout } from './Layout/Layout'
 import { LoginPage } from './Login/LoginPage/LoginPage'
 import { SingleProductPage } from './SingleProductPage/SingleProductPage'
 import { UserPage } from './User/UserPage'
+import { Wishlist } from './Wishlist/Wishlist'
 
 export const PATH = {
   login: '/login',
   user: '/user',
   aboutUs: '/about',
+  wishlist: '/wishlist',
   catalog: '/catalog/:id',
   product: '/product/:id',
 }
@@ -38,6 +40,7 @@ export const Pages = () => {
         <Route path={PATH.catalog} element={<CatalogPage />} />
         <Route path={PATH.product} element={<SingleProductPage />} />
         <Route path={PATH.aboutUs} element={<AboutUs />} />
+        <Route path={PATH.wishlist} element={<Wishlist />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
       <Route path={'/'} element={<Navigate to={PATH.catalog} />} />

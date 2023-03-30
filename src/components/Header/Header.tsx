@@ -13,7 +13,7 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import Link from '@mui/material/Link'
 import Toolbar from '@mui/material/Toolbar'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../pages/pages'
 import { setThemeAppAC } from '../../store/app/app.slice'
@@ -27,6 +27,7 @@ import s from './Header.module.scss'
 
 export const Header = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const theme = useAppSelector((state) => state.app.themeApp)
   const cartItems = useAppSelector((state) => state.cart.items)
 
@@ -73,7 +74,11 @@ export const Header = () => {
               color="inherit">
               {theme === 'light' ? <WbSunnyIcon /> : <DarkModeIcon />}
             </IconButton>
-            <IconButton size="large" aria-label="FavoriteIcon" color="inherit">
+            <IconButton
+              size="large"
+              aria-label="FavoriteIcon"
+              color="inherit"
+              onClick={() => navigate(PATH.wishlist)}>
               <Badge badgeContent={0} color="error">
                 <FavoriteIcon />
               </Badge>
