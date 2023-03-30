@@ -9,6 +9,8 @@ import { CustomersFeedback } from '../../components/CustomersFeedback/CustomersF
 import aboutUsPhoto from './../../assets/aboutUsPhoto.webp'
 import s from './AboutUs.module.scss'
 import { AboutUsMui } from './components/AboutUsMui'
+import { LatestNews } from './components/LatestNews/LatestNews'
+import { WellToKnow } from './components/WellToKnow/WellToKnow'
 
 export const AboutUs = () => {
   return (
@@ -52,6 +54,8 @@ export const AboutUs = () => {
           </div>
         </Box>
         <CustomersFeedback />
+        <WellToKnow />
+        <LatestNews />
       </Container>
     </AboutUsMui>
   )

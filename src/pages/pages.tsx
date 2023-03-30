@@ -37,9 +37,9 @@ export const Pages = () => {
       <Route element={<Layout />}>
         <Route path={PATH.catalog} element={<CatalogPage />} />
         <Route path={PATH.product} element={<SingleProductPage />} />
+        <Route path={PATH.aboutUs} element={<AboutUs />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
-      <Route path={PATH.aboutUs} element={<AboutUs />} />
       <Route path={'/'} element={<Navigate to={PATH.catalog} />} />
       <Route path={'*'} element={<NotFoundPage />} />
     </Routes>

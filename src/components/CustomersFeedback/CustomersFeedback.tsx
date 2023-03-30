@@ -25,16 +25,16 @@ export const CustomersFeedback = () => {
 
   return (
     <CustomersFeedbackMui className={s.wrapper}>
+      <h1>Customers Feedback</h1>
       <Swiper
-        className={s.swiperWrapper}
         modules={[Navigation, Pagination, Autoplay, A11y]}
-        spaceBetween={50}
+        spaceBetween={20}
         slidesPerView={3}
         breakpoints={{
           0: {
             slidesPerView: 1,
           },
-          400: {
+          500: {
             slidesPerView: 2,
           },
           700: {
@@ -43,14 +43,8 @@ export const CustomersFeedback = () => {
           865: {
             slidesPerView: 4,
           },
-          1000: {
+          1200: {
             slidesPerView: 5,
-          },
-          1500: {
-            slidesPerView: 6,
-          },
-          1700: {
-            slidesPerView: 7,
           },
         }}
         navigation
@@ -62,7 +56,7 @@ export const CustomersFeedback = () => {
         pagination={{ clickable: true }}
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}>
-        <SwiperSlide>
+        <SwiperSlide className={s.swiperWrapper}>
           <FeedbackItem
             avatar={data.avatar}
             text={data.text}
@@ -71,7 +65,7 @@ export const CustomersFeedback = () => {
             rating={data.rating}
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className={s.swiperWrapper}>
           <FeedbackItem
             avatar={data.avatar}
             text={data.text}
@@ -80,7 +74,7 @@ export const CustomersFeedback = () => {
             rating={data.rating}
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className={s.swiperWrapper}>
           <FeedbackItem
             avatar={data.avatar}
             text={data.text}
@@ -89,7 +83,25 @@ export const CustomersFeedback = () => {
             rating={data.rating}
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className={s.swiperWrapper}>
+          <FeedbackItem
+            avatar={data.avatar}
+            text={data.text}
+            name={data.name}
+            liveIn={data.liveIn}
+            rating={data.rating}
+          />
+        </SwiperSlide>
+        <SwiperSlide className={s.swiperWrapper}>
+          <FeedbackItem
+            avatar={data.avatar}
+            text={data.text}
+            name={data.name}
+            liveIn={data.liveIn}
+            rating={data.rating}
+          />
+        </SwiperSlide>
+        <SwiperSlide className={s.swiperWrapper}>
           <FeedbackItem
             avatar={data.avatar}
             text={data.text}

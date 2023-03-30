@@ -11,6 +11,7 @@ import AppBar from '@mui/material/AppBar'
 import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
+import Link from '@mui/material/Link'
 import Toolbar from '@mui/material/Toolbar'
 import { NavLink } from 'react-router-dom'
 
@@ -19,6 +20,7 @@ import { setThemeAppAC } from '../../store/app/app.slice'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 import { Cart } from '../Cart/Cart'
 
+import { Aside } from './components/Left/Aside'
 import { MobileMenu } from './components/Right/MobileMenu'
 import { ProfileMenu } from './components/Right/ProfileMenu'
 import s from './Header.module.scss'
@@ -31,6 +33,7 @@ export const Header = () => {
   const [isChartOpen, setIsChartOpen] = useState(false)
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isAsideOpen, setIsAsideOpen] = useState(false)
 
   const handleMenuClose = () => {
     setIsProfileMenuOpen(false)
@@ -51,7 +54,8 @@ export const Header = () => {
             size="large"
             edge="start"
             color="inherit"
-            aria-label="open drawer"
+            aria-label="open aside"
+            onClick={() => setIsAsideOpen(true)}
             sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
@@ -61,6 +65,7 @@ export const Header = () => {
           </NavLink>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Link href={PATH.aboutUs}>About Us</Link>
             <IconButton
               onClick={handleThemeChange}
               size="large"
@@ -108,10 +113,8 @@ export const Header = () => {
         handleClose={handleMobileMenuClose}
       />
       <ProfileMenu isOpen={isProfileMenuOpen} handleClose={handleMenuClose} />
-      <Cart
-        isOpen={isChartOpen}
-        handleClose={() => setIsChartOpen(!isChartOpen)}
-      />
+      <Cart isOpen={isChartOpen} handleClose={() => setIsChartOpen(false)} />
+      <Aside isOpen={isAsideOpen} handleClose={() => setIsAsideOpen(false)} />
     </header>
   )
 }

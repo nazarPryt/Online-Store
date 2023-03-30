@@ -1,17 +1,10 @@
 .wrapper {
-  display: grid;
-  grid-template-areas:
-    'header header header'
-    'sidebar outlet outlet'
-    'sidebar footer footer';
-  grid-template-columns: auto 1fr 1fr;
-  grid-template-rows: 60px auto auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .outlet {
-  grid-area: outlet;
-
-  min-height: calc(100vh - 110px);
-  margin-left: 200px;
-  padding: 20px;
+    min-height: calc(100vh - 110px);
+    margin-top: 30px;
+    padding: 20px;
 }

@@ -8,9 +8,16 @@ import FormGroup from '@mui/material/FormGroup'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import Slider from '@mui/material/Slider'
+import { styled } from '@mui/material/styles'
 
 import s from './SideBar.module.scss'
-export const SideBar = () => {
+
+export const FilterBarMui = styled('aside')(({ theme }) => ({
+  color: theme.palette.text.primary,
+  backgroundColor: theme.palette.background.default,
+}))
+
+export const FilterBar = () => {
   const [value, setValue] = useState<number[]>([100, 900])
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[])
@@ -21,7 +28,7 @@ export const SideBar = () => {
   }
 
   return (
-    <aside className={s.wrapper}>
+    <FilterBarMui className={s.wrapper}>
       <Box>
         <Typography variant={'h6'}>Categories</Typography>
         <FormGroup>
@@ -63,6 +70,6 @@ export const SideBar = () => {
           />
         </RadioGroup>
       </Box>
-    </aside>
+    </FilterBarMui>
   )
 }

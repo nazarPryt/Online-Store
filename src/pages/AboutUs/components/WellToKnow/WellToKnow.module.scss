@@ -1,0 +1,28 @@
+.wrapper {
+    margin: 20px 0;
+    padding: 20px 10px;
+
+    background-color: #FFBB38;
+
+     div {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 15px;
+         justify-content: center;
+
+             div {
+                 display: flex;
+                 gap: 5px;
+                 align-items: center;
+
+                 div {
+                     display: flex;
+                     flex-direction: column;
+                     gap: 5px;
+                     align-items: flex-start;
+
+                 }
+            }
+
+     }
+}
