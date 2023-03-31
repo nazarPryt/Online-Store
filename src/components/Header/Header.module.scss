@@ -1,5 +1,6 @@
 .wrapper {
   position: fixed;
+  z-index: 2;
 
   display: flex;
   grid-area: header;

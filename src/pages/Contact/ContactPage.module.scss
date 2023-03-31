@@ -1,0 +1,11 @@
+.inner {
+    display: flex;
+    gap: 20px;
+}
+
+@media only screen and (max-width: 850px) {
+    .inner {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

@@ -67,6 +67,7 @@ export const Header = () => {
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Link href={PATH.aboutUs}>About Us</Link>
+            <Link href={PATH.contact}>Contact</Link>
             <IconButton
               onClick={handleThemeChange}
               size="large"

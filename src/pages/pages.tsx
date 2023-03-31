@@ -7,6 +7,7 @@ import { useAppSelector } from '../utils/hooks/redux-hooks'
 import { NotFoundPage } from './404/NotFoundPage'
 import { AboutUs } from './AboutUs/AboutUs'
 import { CatalogPage } from './Catalog/CatalogPage'
+import { ContactPage } from './Contact/ContactPage'
 import { Layout } from './Layout/Layout'
 import { LoginPage } from './Login/LoginPage/LoginPage'
 import { SingleProductPage } from './SingleProductPage/SingleProductPage'
@@ -18,6 +19,7 @@ export const PATH = {
   user: '/user',
   aboutUs: '/about',
   wishlist: '/wishlist',
+  contact: '/contact',
   catalog: '/catalog/:id',
   product: '/product/:id',
 }
@@ -40,6 +42,7 @@ export const Pages = () => {
         <Route path={PATH.catalog} element={<CatalogPage />} />
         <Route path={PATH.product} element={<SingleProductPage />} />
         <Route path={PATH.aboutUs} element={<AboutUs />} />
+        <Route path={PATH.contact} element={<ContactPage />} />
         <Route path={PATH.wishlist} element={<Wishlist />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
