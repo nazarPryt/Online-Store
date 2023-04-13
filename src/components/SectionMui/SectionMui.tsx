@@ -11,9 +11,14 @@ const Wrapper = styled('section')(({ theme }) => ({
 export const SectionMui = (props: { title?: string; children: ReactNode }) => {
   return (
     <Wrapper>
-      <Typography align={'center'} variant={'h4'} style={{ margin: '20px 0' }}>
-        {props.title}
-      </Typography>
+      {props.title && (
+        <Typography
+          align={'center'}
+          variant={'h4'}
+          style={{ margin: '20px 0' }}>
+          {props.title}
+        </Typography>
+      )}
       {props.children}
     </Wrapper>
   )

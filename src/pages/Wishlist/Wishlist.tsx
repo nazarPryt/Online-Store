@@ -34,7 +34,7 @@ export const Wishlist = () => {
         {data.length ? (
           <>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 570 }} aria-label="simple table">
+              <Table sx={{ minWidth: 600 }} aria-label="simple table">
                 <WishlistHeader />
 
                 <TableBody>

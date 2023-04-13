@@ -8,25 +8,17 @@ import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import { addToCartAC } from '../../../../store/cart/cart.slice'
+import {
+  addToCartAC,
+  DomainProductType,
+} from '../../../../store/cart/cart.slice'
 import { removeProductFromWishLisAC } from '../../../../store/wishlist/wishlist.slice'
 import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
 
 import imgNotFound from './../../../../assets/imgNotFound.png'
 import s from './WishItem.module.scss'
-type d = {
-  id: number
-  title: string
-  description: string
-  price: number
-  oldPrice: number
-  category: string
-  available: boolean
-  img: string
-  quantity: number
-}
 
-export const WishItem = (props: d) => {
+export const WishItem = (props: DomainProductType) => {
   const dispatch = useAppDispatch()
   const [quantity, setQuantity] = useState(props.quantity)
 

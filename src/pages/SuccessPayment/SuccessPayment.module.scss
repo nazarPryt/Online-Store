@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+
+    max-width: 600px;
+    margin: 0 auto;
+
+    text-align: center;
+
+    img {
+        max-width: 250px;
+    }
+
+    h1 {
+        font-size: 35px;
+        color: #7bb623;
+    }
+
+    div {
+        display: flex;
+        gap: 20px;
+
+        a {
+            padding: 5px 10px;
+
+            color: floralwhite;
+            text-decoration: none;
+
+            background-color: cornflowerblue;
+            border-radius: 10px;
+        }
+        a:hover {
+            background-color: #5387ee;
+        }
+
+    }
+}

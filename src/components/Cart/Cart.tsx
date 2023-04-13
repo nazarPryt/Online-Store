@@ -5,35 +5,54 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
+import { loadStripe } from '@stripe/stripe-js'
 
 import imgNotFound from '../../assets/imgNotFound.png'
+import { instance } from '../../services/instance'
 import { removeItemAC, resetCartAC } from '../../store/cart/cart.slice'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
 import s from './Cart.module.scss'
 
 export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
-  const cartItems = useAppSelector((state) => state.cart.items)
+  const products = useAppSelector((state) => state.cart.items)
   const dispatch = useAppDispatch()
 
   const totalPrice = () => {
     let total = 0
 
-    cartItems.forEach((item) => {
+    products.forEach((item) => {
       total += item.quantity * item.price
     })
 
     return total.toFixed(2)
   }
 
+  const handlePayment = async () => {
+    const stripePromise = loadStripe(
+      'pk_test_51MwTodKDtk8DBuSOn5gl7bCmFRkpQ5rSzE7trWoKjxH78o6w6rCII2AtDNfHnn02OJX5IQf4ry3spdhujEF1JhG100wjP2bmrq'
+    )
+
+    try {
+      const stripe = await stripePromise
+      const res = await instance.post('/api/orders', { products })
+
+      await stripe?.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <Drawer anchor={'right'} open={props.isOpen} onClose={props.handleClose}>
       <Box className={s.cart}>
         <h1>Products in your cart</h1>
-        {!cartItems.length && (
+        {!products.length && (
           <h2 className={s.emptyText}>Your cart is empty</h2>
         )}
-        {cartItems.map((item) => (
+        {products.map((item) => (
           <Box
             className={s.item}
             key={item.id}
@@ -61,7 +80,10 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
           <span>SUBTOTAL</span>
           <span>${totalPrice()}</span>
         </div>
-        <Button disabled={!cartItems.length} variant={'contained'}>
+        <Button
+          disabled={!products.length}
+          variant={'contained'}
+          onClick={handlePayment}>
           Pay
         </Button>
         <span className={s.reset} onClick={() => dispatch(resetCartAC())}>

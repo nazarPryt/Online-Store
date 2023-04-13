@@ -10,7 +10,9 @@ import { CatalogPage } from './Catalog/CatalogPage'
 import { ContactPage } from './Contact/ContactPage'
 import { Layout } from './Layout/Layout'
 import { LoginPage } from './Login/LoginPage/LoginPage'
+import { MyOrders } from './myOrders/myOrders'
 import { SingleProductPage } from './SingleProductPage/SingleProductPage'
+import { SuccessPayment } from './SuccessPayment/SuccessPayment'
 import { UserPage } from './User/UserPage'
 import { Wishlist } from './Wishlist/Wishlist'
 
@@ -22,6 +24,8 @@ export const PATH = {
   contact: '/contact',
   catalog: '/catalog/:id',
   product: '/product/:id',
+  successPayment: '/SuccessPayment',
+  myOrders: '/myOrders',
 }
 
 export const Pages = () => {
@@ -39,15 +43,17 @@ export const Pages = () => {
         <Route path={PATH.user} element={<UserPage />} />
       </Route>
       <Route element={<Layout />}>
+        <Route path={PATH.wishlist} element={<Wishlist />} />
         <Route path={PATH.catalog} element={<CatalogPage />} />
         <Route path={PATH.product} element={<SingleProductPage />} />
+        <Route path={PATH.successPayment} element={<SuccessPayment />} />
+        <Route path={PATH.myOrders} element={<MyOrders />} />
         <Route path={PATH.aboutUs} element={<AboutUs />} />
         <Route path={PATH.contact} element={<ContactPage />} />
-        <Route path={PATH.wishlist} element={<Wishlist />} />
+        <Route path={'*'} element={<NotFoundPage />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
       <Route path={'/'} element={<Navigate to={PATH.catalog} />} />
-      <Route path={'*'} element={<NotFoundPage />} />
     </Routes>
   )
 }
