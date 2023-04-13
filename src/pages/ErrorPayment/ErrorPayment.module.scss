@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    margin: 0 auto;
+
+    img {
+        max-width: 250px;
+    }
+
+    h1 {
+        font-size: 35px;
+        color: red;
+    }
+
+    a {
+        font-size: 25px;
+        color: darkgoldenrod;
+    }
+}

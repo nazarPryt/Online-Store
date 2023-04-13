@@ -8,6 +8,7 @@ import { NotFoundPage } from './404/NotFoundPage'
 import { AboutUs } from './AboutUs/AboutUs'
 import { CatalogPage } from './Catalog/CatalogPage'
 import { ContactPage } from './Contact/ContactPage'
+import { ErrorPayment } from './ErrorPayment/ErrorPayment'
 import { Layout } from './Layout/Layout'
 import { LoginPage } from './Login/LoginPage/LoginPage'
 import { MyOrders } from './myOrders/myOrders'
@@ -24,7 +25,8 @@ export const PATH = {
   contact: '/contact',
   catalog: '/catalog/:id',
   product: '/product/:id',
-  successPayment: '/SuccessPayment',
+  successPayment: '/successPayment',
+  errorPayment: '/errorPayment',
   myOrders: '/myOrders',
 }
 
@@ -47,6 +49,7 @@ export const Pages = () => {
         <Route path={PATH.catalog} element={<CatalogPage />} />
         <Route path={PATH.product} element={<SingleProductPage />} />
         <Route path={PATH.successPayment} element={<SuccessPayment />} />
+        <Route path={PATH.errorPayment} element={<ErrorPayment />} />
         <Route path={PATH.myOrders} element={<MyOrders />} />
         <Route path={PATH.aboutUs} element={<AboutUs />} />
         <Route path={PATH.contact} element={<ContactPage />} />
