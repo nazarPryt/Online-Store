@@ -73,6 +73,7 @@ export const Header = () => {
   const navigate = useNavigate()
 
   const cartItems = useAppSelector((state) => state.cart.items)
+  const wishlistItems = useAppSelector((state) => state.wishlist.items)
   const theme = useAppSelector((state) => state.app.themeApp)
 
   const [isChartOpen, setIsChartOpen] = useState(false)
@@ -150,7 +151,7 @@ export const Header = () => {
       </MenuItem>
       <MenuItem onClick={() => navigate(PATH.wishlist)}>
         <IconButton size="large" aria-label="FavoriteIcon" color="inherit">
-          <Badge badgeContent={3} color="error">
+          <Badge badgeContent={wishlistItems.length} color="error">
             <FavoriteIcon />
           </Badge>
         </IconButton>
@@ -225,7 +226,7 @@ export const Header = () => {
               aria-label="FavoriteIcon"
               color="inherit"
               onClick={() => navigate(PATH.wishlist)}>
-              <Badge badgeContent={3} color="error">
+              <Badge badgeContent={wishlistItems.length} color="error">
                 <FavoriteIcon />
               </Badge>
             </IconButton>

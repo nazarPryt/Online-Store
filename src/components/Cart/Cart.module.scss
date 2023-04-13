@@ -16,7 +16,6 @@
 
         font-size: 24px;
         font-weight: 400;
-        color: gray;
     }
 
     .item {
@@ -27,7 +26,8 @@
         margin-bottom: 10px;
         padding: 5px;
 
-        background-color: hotpink;
+        border-radius: 10px;
+
         img {
             width: 80px;
             height: 100px;
@@ -45,11 +45,6 @@
                 margin-bottom: 10px;
 
                 font-size: 14px;
-                color: gray;
-            }
-
-            .price {
-                color: #2879fe;
             }
         }
     }

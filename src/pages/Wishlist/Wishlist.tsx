@@ -1,89 +1,80 @@
 import React from 'react'
 
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
+
+import { SectionMui } from '../../components/SectionMui/SectionMui'
+import { addAllToCartAC } from '../../store/cart/cart.slice'
+import { cleanWishListAC } from '../../store/wishlist/wishlist.slice'
+import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
 import { WishItem } from './components/WishItem/WishItem'
 import { WishlistHeader } from './components/WishlistHeader/WishlistHeader'
 import s from './Wishlist.module.scss'
 
-export const WishlistMui = styled('section')(({ theme }) => ({
-  color: theme.palette.text.primary,
-  backgroundColor: theme.palette.background.default,
-}))
-
 export const Wishlist = () => {
-  const data = [
-    {
-      id: 1,
-      title: 'first title',
-      description: 'some long description',
-      price: 45,
-      oldPrice: 70,
-      category: 'phones',
-      available: true,
-      img: 'https://i.pravatar.cc/300',
-      quantity: 3,
-    },
-    {
-      id: 2,
-      title: 'second title',
-      description: 'some long description',
-      price: 45,
-      oldPrice: 70,
-      category: 'phones',
-      available: false,
-      img: 'https://i.pravatar.cc/300',
-      quantity: 1,
-    },
-    {
-      id: 3,
-      title: 'third title',
-      description: 'some long description',
-      price: 45,
-      oldPrice: 70,
-      category: 'phones',
-      available: true,
-      img: '',
-      quantity: 1,
-    },
-  ]
+  const dispatch = useAppDispatch()
+  const data = useAppSelector((state) => state.wishlist.items)
+
+  const handleAddAllToCart = () => {
+    dispatch(addAllToCartAC({ products: data }))
+  }
+  const handleCleanWishList = () => {
+    dispatch(cleanWishListAC())
+  }
 
   return (
-    <WishlistMui className={s.wrapper}>
-      <h1>Wishlist</h1>
+    <SectionMui title={'Wishlist'}>
       <Container>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 570 }} aria-label="simple table">
-            <WishlistHeader />
+        {data.length ? (
+          <>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 570 }} aria-label="simple table">
+                <WishlistHeader />
 
-            <TableBody>
-              {data.map((row) => (
-                <WishItem
-                  price={row.price}
-                  title={row.title}
-                  id={row.id}
-                  key={row.id}
-                  quantity={row.quantity}
-                  available={row.available}
-                  img={row.img}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <div className={s.bottomButtons}>
-          <Button color={'error'}>Clean Wishlist</Button>
-          <Button variant={'contained'} color={'success'}>
-            Add to Cart All
-          </Button>
-        </div>
+                <TableBody>
+                  {data.map((row) => (
+                    <WishItem
+                      oldPrice={row.oldPrice}
+                      category={row.category}
+                      description={row.description}
+                      price={row.price}
+                      title={row.title}
+                      id={row.id}
+                      key={row.id}
+                      quantity={row.quantity}
+                      available={row.available}
+                      img={row.img}
+                    />
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <div className={s.bottomButtons}>
+              <Button color={'error'} onClick={handleCleanWishList}>
+                Clean Wishlist
+              </Button>
+              <Button
+                variant={'contained'}
+                color={'success'}
+                onClick={handleAddAllToCart}>
+                Add to Cart All
+              </Button>
+            </div>
+          </>
+        ) : (
+          <Box
+            color={(theme) => theme.palette.text.secondary}
+            style={{ textAlign: 'center', fontSize: '30px' }}>
+            Your wish list is empty
+          </Box>
+        )}
       </Container>
-    </WishlistMui>
+    </SectionMui>
   )
 }

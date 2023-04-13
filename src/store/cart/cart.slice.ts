@@ -34,6 +34,12 @@ export const cartSlice = createSlice({
         state.items.push(action.payload.product)
       }
     },
+    addAllToCartAC: (
+      state,
+      action: PayloadAction<{ products: DomainProductType[] }>
+    ) => {
+      action.payload.products.map((el) => state.items.push(el))
+    },
     removeItemAC: (state, action: PayloadAction<{ id: number }>) => {
       state.items = state.items.filter((item) => item.id !== action.payload.id)
     },
@@ -43,6 +49,7 @@ export const cartSlice = createSlice({
   },
 })
 
-export const { addToCartAC, removeItemAC, resetCartAC } = cartSlice.actions
+export const { addToCartAC, removeItemAC, resetCartAC, addAllToCartAC } =
+  cartSlice.actions
 
 export const cartReducer = cartSlice.reducer

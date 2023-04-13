@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
 
+import imgNotFound from '../../assets/imgNotFound.png'
 import { removeItemAC, resetCartAC } from '../../store/cart/cart.slice'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
@@ -33,21 +34,28 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
           <h2 className={s.emptyText}>Your cart is empty</h2>
         )}
         {cartItems.map((item) => (
-          <div className={s.item} key={item.id}>
-            <img src={item.img} alt="productPhoto" />
+          <Box
+            className={s.item}
+            key={item.id}
+            bgcolor={(theme) => theme.palette.background.default}>
+            {item.img ? (
+              <img src={item.img} alt="productPhoto" />
+            ) : (
+              <img src={imgNotFound} alt="productPhoto" />
+            )}
             <div className={s.details}>
               <h1>{item.title}</h1>
-              <p>{item.description.substring(0, 100)}</p>
-              <div className={s.price}>
+              <p>{item.description.substring(0, 20)}...</p>
+              <Box color={(theme) => theme.palette.info.light}>
                 {item.quantity} x ${item.price}
-              </div>
+              </Box>
             </div>
             <IconButton
               size={'small'}
               onClick={() => dispatch(removeItemAC({ id: item.id }))}>
               <DeleteIcon />
             </IconButton>
-          </div>
+          </Box>
         ))}
         <div className={s.total}>
           <span>SUBTOTAL</span>
