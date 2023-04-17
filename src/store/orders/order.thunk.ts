@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { orderService } from '../../services/orderService'
+import { returnDomainOrdersType } from '../../utils/handlers/returnDomainOrdersType'
 
 import { setAllOrdersAC } from './order.slice'
 import { OrderDomainType } from './OrderTypes'
@@ -10,7 +11,7 @@ export const getAllOrdersTC = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       const res = await orderService.getAllOrders()
-      const orders: OrderDomainType[] = []
+      const orders: OrderDomainType[] = returnDomainOrdersType(res.data)
 
       thunkAPI.dispatch(setAllOrdersAC({ orders }))
     } catch (e) {

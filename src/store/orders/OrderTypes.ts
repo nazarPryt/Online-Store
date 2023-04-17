@@ -2,11 +2,7 @@
 
 export type OrderDomainType = {
   stripeId: string
-  quantity: number
-  price: number
-  img: string
-  title: string
-  boughtAt: string
+  products: OrdersDataTypeDataAttributesProducts[]
 }
 
 ///////////   OrderResponseDataType ///////////////////////
