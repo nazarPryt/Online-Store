@@ -6,7 +6,7 @@ import { useAppSelector } from '../utils/hooks/redux-hooks'
 
 import { NotFoundPage } from './404/NotFoundPage'
 import { AboutUs } from './AboutUs/AboutUs'
-import { CatalogPage } from './Catalog/CatalogPage'
+import { CategoryPage } from './Catalog/CategoryPage'
 import { ContactPage } from './Contact/ContactPage'
 import { ErrorPayment } from './ErrorPayment/ErrorPayment'
 import { Layout } from './Layout/Layout'
@@ -23,8 +23,8 @@ export const PATH = {
   aboutUs: '/about',
   wishlist: '/wishlist',
   contact: '/contact',
-  catalog: '/catalog/:id',
-  product: '/product/:id',
+  category: '/category/',
+  product: '/product/',
   successPayment: '/successPayment',
   errorPayment: '/errorPayment',
   myOrders: '/myOrders',
@@ -46,8 +46,8 @@ export const Pages = () => {
       </Route>
       <Route element={<Layout />}>
         <Route path={PATH.wishlist} element={<Wishlist />} />
-        <Route path={PATH.catalog} element={<CatalogPage />} />
-        <Route path={PATH.product} element={<SingleProductPage />} />
+        <Route path={`${PATH.category}:id`} element={<CategoryPage />} />
+        <Route path={`${PATH.product}:id`} element={<SingleProductPage />} />
         <Route path={PATH.successPayment} element={<SuccessPayment />} />
         <Route path={PATH.errorPayment} element={<ErrorPayment />} />
         <Route path={PATH.myOrders} element={<MyOrders />} />
@@ -56,7 +56,10 @@ export const Pages = () => {
         <Route path={'*'} element={<NotFoundPage />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
-      <Route path={'/'} element={<Navigate to={PATH.catalog} />} />
+      <Route
+        path={'/'}
+        element={<Navigate to={`${PATH.category}all-products`} />}
+      />
     </Routes>
   )
 }

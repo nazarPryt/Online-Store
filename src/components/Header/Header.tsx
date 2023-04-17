@@ -14,11 +14,11 @@ import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import InputBase from '@mui/material/InputBase'
+import Link from '@mui/material/Link'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { styled, alpha } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../pages/pages'
@@ -195,13 +195,13 @@ export const Header = () => {
             sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
-          <Typography
+          <Link
+            href={`${PATH.category}all-products`}
             variant="h6"
             noWrap
-            component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}>
             MediaWorld
-          </Typography>
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

@@ -9,15 +9,21 @@ import CardContent from '@mui/material/CardContent'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
+import { PATH } from '../../pages/pages'
+
 import s from './ProductCard.module.scss'
 
-type ProductCardType = {}
-export const ProductCard = (props: any) => {
-  const available = true
-  const oldPrice = 700
+type ProductCardType = {
+  available: boolean
+  oldPrice: number
+  price: number
+  description: string
+  img: string
+  title: string
+  id: number
+}
+export const ProductCard = (props: ProductCardType) => {
   const favorite = false
-  const text =
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur atque autem dicta distinctio dolores eaque inventore labore laudantium, nesciunt quidem? A ab eveniet expedita facere fugit iste reprehenderit suscipit temporibus.'
 
   return (
     <Card
@@ -27,15 +33,20 @@ export const ProductCard = (props: any) => {
         overflow: 'hidden',
       }}>
       <CardContent className={s.CardContent}>
-        <Box className={s.imgBox}>
-          <img src="https://placehold.co/600x400" alt="" />
-        </Box>
-        <Typography variant={'h5'}>IPhone</Typography>
+        <a href={`${PATH.product}${props.id}`}>
+          <Box className={s.imgBox}>
+            <img src={props.img} alt="product cover" />
+          </Box>
+          <p>{props.title}</p>
+        </a>
+
         <Box className={s.nameFavo}>
-          <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>56$</Typography>
+          <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>
+            ${props.price}
+          </Typography>
           <Typography
             sx={{ fontSize: 20, textDecoration: 'line-through', opacity: 0.5 }}>
-            ${oldPrice}
+            ${props.oldPrice}
           </Typography>
           <IconButton
             size="large"
@@ -44,7 +55,7 @@ export const ProductCard = (props: any) => {
             <FavoriteIcon />
           </IconButton>
         </Box>
-        {available ? (
+        {props.available ? (
           <Typography variant={'h6'} color={'green'}>
             Available
           </Typography>
@@ -55,11 +66,13 @@ export const ProductCard = (props: any) => {
         )}
         <Button
           variant="contained"
-          disabled={!available}
+          disabled={!props.available}
           startIcon={<AddShoppingCartIcon />}>
           Add to Cart
         </Button>
-        <Typography component="p">{text.substring(0, 100)}...</Typography>
+        <Typography component="p">
+          {props.description.substring(0, 100)}...
+        </Typography>
       </CardContent>
     </Card>
   )

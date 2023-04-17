@@ -21,7 +21,7 @@ export const SuccessPayment = () => {
         <div>
           <Link
             bgcolor={(theme) => theme.palette.background.paper}
-            href={PATH.catalog}>
+            href={`${PATH.category}all-products`}>
             Continue Shopping
           </Link>
           <Link href={PATH.myOrders}>View Order</Link>

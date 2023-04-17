@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { appReducer } from './app/app.slice'
 import { authReducer } from './auth/auth.slice'
 import { cartReducer } from './cart/cart.slice'
+import { categoryReducer } from './category/category.slice'
 import { productReducer } from './product/product.slice'
 import { wishlistReducer } from './wishlist/wishlist.slice'
 
@@ -13,6 +14,7 @@ export const store = configureStore({
     product: productReducer,
     cart: cartReducer,
     wishlist: wishlistReducer,
+    category: categoryReducer,
   },
 })
 

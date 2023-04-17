@@ -12,7 +12,7 @@ export const Aside = (props: { isOpen: boolean; handleClose: () => void }) => {
 
   return (
     <Drawer anchor={'left'} open={props.isOpen} onClose={props.handleClose}>
-      {location.pathname === `${PATH.catalog}` && <FilterBar />}
+      {location.pathname === `${PATH.category}` && <FilterBar />}
       {location.pathname === `${PATH.product}` && <div>some text</div>}
     </Drawer>
   )

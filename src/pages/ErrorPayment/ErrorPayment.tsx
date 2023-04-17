@@ -13,7 +13,7 @@ export const ErrorPayment = () => {
       <div className={s.wrapper}>
         <img src={ErrorPaymentIcon} alt="ErrorPaymentIcon" />
         <h1>Something went wrong</h1>
-        <Link href={PATH.catalog}>Back to products</Link>
+        <Link href={`${PATH.category}all-products`}>Back to products</Link>
       </div>
     </SectionMui>
   )
