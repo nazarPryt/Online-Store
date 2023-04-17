@@ -36,8 +36,6 @@ function App() {
   // Update the theme only if the mode changes
   const theme = createTheme(getDesignTokens(themeApp))
 
-  console.log('render')
-
   return (
     <>
       <ThemeProvider theme={theme}>

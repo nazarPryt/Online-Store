@@ -4,6 +4,7 @@ import { appReducer } from './app/app.slice'
 import { authReducer } from './auth/auth.slice'
 import { cartReducer } from './cart/cart.slice'
 import { categoryReducer } from './category/category.slice'
+import { orderReducer } from './orders/order.slice'
 import { productReducer } from './product/product.slice'
 import { wishlistReducer } from './wishlist/wishlist.slice'
 
@@ -15,6 +16,7 @@ export const store = configureStore({
     cart: cartReducer,
     wishlist: wishlistReducer,
     category: categoryReducer,
+    orders: orderReducer,
   },
 })
 

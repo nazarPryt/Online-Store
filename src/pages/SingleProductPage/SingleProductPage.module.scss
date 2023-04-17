@@ -18,6 +18,7 @@
                 height: 150px;
                 margin-bottom: 10px;
 
+                opacity: 0.5;
                 object-fit: cover;
             }
         }
@@ -38,4 +39,19 @@
         flex-direction: column;
         gap: 10px;
     }
+}
+
+@media only screen and (max-width: 800px) {
+    .images {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .product {
+        flex-direction: column;
+        gap: 10px;
+    }
+
 }

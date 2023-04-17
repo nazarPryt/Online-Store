@@ -22,7 +22,11 @@ export const SingleProductPage = () => {
   const [selectedImg, setSelectedImg] = useState(0)
   const [quantity, setQuantity] = useState(1)
 
-  const photos: string[] = ['dd']
+  const photosToShow: string[] = [
+    'https://picsum.photos/id/1/200/300',
+    'https://picsum.photos/id/2/200/300',
+    'https://picsum.photos/id/3/200/300',
+  ]
 
   useEffect(() => {
     if (productId) {
@@ -46,7 +50,7 @@ export const SingleProductPage = () => {
     <section className={s.product}>
       <Box className={s.left}>
         <Box className={s.images}>
-          {photos.map((img, index) => (
+          {photosToShow.map((img, index) => (
             <img
               key={index}
               src={img}
@@ -55,8 +59,9 @@ export const SingleProductPage = () => {
             />
           ))}
         </Box>
+
         <Box className={s.mainImg}>
-          <img src={photos[selectedImg]} alt="productImg" />
+          <img src={photosToShow[selectedImg]} alt="productImg" />
         </Box>
       </Box>
 
