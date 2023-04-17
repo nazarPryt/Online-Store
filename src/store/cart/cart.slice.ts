@@ -8,8 +8,9 @@ export type DomainProductType = {
   oldPrice: number
   category: string
   available: boolean
-  img: string
+  cover: string
   quantity: number
+  imgAll: string[]
 }
 
 const initialState = {

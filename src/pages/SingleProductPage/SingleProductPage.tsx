@@ -21,14 +21,15 @@ export const SingleProductPage = () => {
   const productId = useParams().id
   const [selectedImg, setSelectedImg] = useState(0)
   const [quantity, setQuantity] = useState(1)
-  const photos = [
-    'https://images.pexels.com/photos/6551795/pexels-photo-6551795.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/4022587/pexels-photo-4022587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  ]
+
+  const photos: string[] = ['dd']
 
   useEffect(() => {
     if (productId) {
       dispatch(getSingleProductTC(+productId))
+
+      // photos.push(data.cover)
+      // data.imgAll.forEach((img) => photos.push(img))
     }
   }, [productId])
 
@@ -45,11 +46,17 @@ export const SingleProductPage = () => {
     <section className={s.product}>
       <Box className={s.left}>
         <Box className={s.images}>
-          <img src={photos[0]} alt="" onClick={() => setSelectedImg(0)} />
-          <img src={photos[1]} alt="" onClick={() => setSelectedImg(1)} />
+          {photos.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt="productImg"
+              onClick={() => setSelectedImg(index)}
+            />
+          ))}
         </Box>
         <Box className={s.mainImg}>
-          <img src={photos[selectedImg]} alt="" />
+          <img src={photos[selectedImg]} alt="productImg" />
         </Box>
       </Box>
 

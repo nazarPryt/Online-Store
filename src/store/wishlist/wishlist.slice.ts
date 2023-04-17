@@ -12,7 +12,7 @@ const initialState = {
       oldPrice: 70,
       category: 'phones',
       available: true,
-      img: 'https://i.pravatar.cc/300',
+      cover: 'https://i.pravatar.cc/300',
       quantity: 3,
     },
     {
@@ -23,7 +23,7 @@ const initialState = {
       oldPrice: 70,
       category: 'phones',
       available: false,
-      img: 'https://i.pravatar.cc/300',
+      cover: 'https://i.pravatar.cc/300',
       quantity: 1,
     },
     {
@@ -34,7 +34,7 @@ const initialState = {
       oldPrice: 70,
       category: 'phones',
       available: true,
-      img: '',
+      cover: '',
       quantity: 1,
     },
   ] as DomainProductType[],

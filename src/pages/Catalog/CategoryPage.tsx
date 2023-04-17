@@ -21,7 +21,7 @@ export const CategoryPage = () => {
           id={product.id}
           key={product.id}
           available={product.available}
-          img={product.img}
+          img={product.cover}
           oldPrice={product.oldPrice}
           price={product.price}
           title={product.title}

@@ -57,8 +57,8 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
             className={s.item}
             key={item.id}
             bgcolor={(theme) => theme.palette.background.default}>
-            {item.img ? (
-              <img src={item.img} alt="productPhoto" />
+            {item.cover ? (
+              <img src={item.cover} alt="productPhoto" />
             ) : (
               <img src={imgNotFound} alt="productPhoto" />
             )}

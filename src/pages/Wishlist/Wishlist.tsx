@@ -40,6 +40,7 @@ export const Wishlist = () => {
                 <TableBody>
                   {data.map((row) => (
                     <WishItem
+                      imgAll={row.imgAll}
                       oldPrice={row.oldPrice}
                       category={row.category}
                       description={row.description}
@@ -49,7 +50,7 @@ export const Wishlist = () => {
                       key={row.id}
                       quantity={row.quantity}
                       available={row.available}
-                      img={row.img}
+                      cover={row.cover}
                     />
                   ))}
                 </TableBody>
