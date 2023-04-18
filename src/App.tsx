@@ -21,19 +21,6 @@ function App() {
   if (!isInitialized) {
     return <Initialization />
   }
-  // const [mode, setMode] = useState<PaletteMode>('dark')
-  // const colorMode = useMemo(
-  //   () => ({
-  //     // The dark mode switch would invoke this method
-  //     toggleColorMode: () => {
-  //       setMode((prevMode: PaletteMode) =>
-  //         prevMode === 'light' ? 'dark' : 'light'
-  //       )
-  //     },
-  //   }),
-  //   []
-  // )
-  // Update the theme only if the mode changes
   const theme = createTheme(getDesignTokens(themeApp))
 
   return (
