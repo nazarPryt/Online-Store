@@ -18,10 +18,13 @@ export const CategoryPage = () => {
     <div className={s.wrapper}>
       {data.map((product) => (
         <ProductCard
+          quantity={product.quantity}
+          imgAll={product.imgAll}
+          category={product.category}
           id={product.id}
           key={product.id}
           available={product.available}
-          img={product.cover}
+          cover={product.cover}
           oldPrice={product.oldPrice}
           price={product.price}
           title={product.title}

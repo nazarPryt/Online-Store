@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -12,7 +12,11 @@ import {
   addToCartAC,
   DomainProductType,
 } from '../../../../store/cart/cart.slice'
-import { removeProductFromWishLisAC } from '../../../../store/wishlist/wishlist.slice'
+import {
+  augmentQuantityAC,
+  reduceQuantityAC,
+  removeProductFromWishLisAC,
+} from '../../../../store/wishlist/wishlist.slice'
 import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
 
 import imgNotFound from './../../../../assets/imgNotFound.png'
@@ -20,16 +24,21 @@ import s from './WishItem.module.scss'
 
 export const WishItem = (props: DomainProductType) => {
   const dispatch = useAppDispatch()
-  const [quantity, setQuantity] = useState(props.quantity)
 
   const totalPrice = () => {
-    return (quantity * props.price).toFixed(2)
+    return (props.quantity * props.price).toFixed(2)
   }
   const handleAddToCart = () => {
     dispatch(addToCartAC({ product: { ...props } }))
   }
   const handleRemoveFromWishList = () => {
     dispatch(removeProductFromWishLisAC({ id: props.id }))
+  }
+  const handleAugmentQuantity = () => {
+    dispatch(augmentQuantityAC({ id: props.id }))
+  }
+  const handleReduceQuantity = () => {
+    dispatch(reduceQuantityAC({ id: props.id }))
   }
 
   return (
@@ -47,14 +56,14 @@ export const WishItem = (props: DomainProductType) => {
         <IconButton
           aria-label="subtract"
           color="error"
-          onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}>
+          onClick={handleReduceQuantity}>
           <RemoveIcon />
         </IconButton>
-        {quantity}
+        {props.quantity}
         <IconButton
           aria-label="add"
           color="success"
-          onClick={() => setQuantity(quantity + 1)}>
+          onClick={handleAugmentQuantity}>
           <AddIcon />
         </IconButton>
       </TableCell>

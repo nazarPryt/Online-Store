@@ -122,7 +122,7 @@ export const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => navigate(PATH.myOrders)}>My Orders</MenuItem>
       <MenuItem onClick={handleMenuClose}>LogOut</MenuItem>
     </Menu>
   )

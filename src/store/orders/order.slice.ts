@@ -2,7 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { OrderDomainType } from './OrderTypes'
 
-const initialState = [] as OrderDomainType[]
+const initialState = {
+  items: [] as OrderDomainType[],
+}
 
 export const orderSlice = createSlice({
   name: 'order',
@@ -12,7 +14,7 @@ export const orderSlice = createSlice({
       state,
       action: PayloadAction<{ orders: OrderDomainType[] }>
     ) => {
-      state = action.payload.orders
+      state.items = action.payload.orders
     },
   },
 })

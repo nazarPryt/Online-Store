@@ -3,41 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { DomainProductType } from '../cart/cart.slice'
 
 const initialState = {
-  items: [
-    {
-      id: 1,
-      title: 'first title',
-      description: 'some long descriptiondddddddddddddd',
-      price: 45,
-      oldPrice: 70,
-      category: 'phones',
-      available: true,
-      cover: 'https://i.pravatar.cc/300',
-      quantity: 3,
-    },
-    {
-      id: 2,
-      title: 'second title',
-      description: 'some long descriptionddddddddddddd',
-      price: 45,
-      oldPrice: 70,
-      category: 'phones',
-      available: false,
-      cover: 'https://i.pravatar.cc/300',
-      quantity: 1,
-    },
-    {
-      id: 3,
-      title: 'third title',
-      description: 'some long description',
-      price: 45,
-      oldPrice: 70,
-      category: 'phones',
-      available: true,
-      cover: '',
-      quantity: 1,
-    },
-  ] as DomainProductType[],
+  items: [] as DomainProductType[],
 }
 
 export const wishlistSlice = createSlice({
@@ -59,13 +25,31 @@ export const wishlistSlice = createSlice({
     cleanWishListAC: (state) => {
       state.items = []
     },
+    augmentQuantityAC: (state, action: PayloadAction<{ id: number }>) => {
+      const product = state.items.find(
+        (product) => product.id === action.payload.id
+      )
+
+      if (product) product.quantity += 1
+    },
+    reduceQuantityAC: (state, action: PayloadAction<{ id: number }>) => {
+      const product = state.items.find(
+        (product) => product.id === action.payload.id
+      )
+
+      if (product) {
+        product.quantity = product.quantity === 1 ? 1 : product.quantity - 1
+      }
+    },
   },
 })
 
 export const {
+  reduceQuantityAC,
   cleanWishListAC,
   removeProductFromWishLisAC,
   addProductToWishList,
+  augmentQuantityAC,
 } = wishlistSlice.actions
 
 export const wishlistReducer = wishlistSlice.reducer

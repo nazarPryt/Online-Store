@@ -1,23 +1,24 @@
 import React, { useEffect } from 'react'
 
-import s from '../../components/Cart/Cart.module.scss'
+import { SectionMui } from '../../components/SectionMui/SectionMui'
 import { getAllOrdersTC } from '../../store/orders/order.thunk'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
+import s from './myOrders.module.scss'
+
 export const MyOrders = () => {
   const dispatch = useAppDispatch()
-  const orders = useAppSelector((state) => state.orders)
+  const orders = useAppSelector((state) => state.orders.items)
 
   useEffect(() => {
     dispatch(getAllOrdersTC())
   }, [])
 
   return (
-    <div>
+    <SectionMui title={'My Orders'}>
       {!orders.length && (
         <h2 className={s.emptyText}>You didnt make eny order yet</h2>
       )}
-      myOrders page
-    </div>
+    </SectionMui>
   )
 }

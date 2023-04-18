@@ -10,20 +10,20 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
 import { PATH } from '../../pages/pages'
+import { DomainProductType } from '../../store/cart/cart.slice'
+import { addProductToWishList } from '../../store/wishlist/wishlist.slice'
+import { useAppDispatch } from '../../utils/hooks/redux-hooks'
 
 import s from './ProductCard.module.scss'
 
-type ProductCardType = {
-  available: boolean
-  oldPrice: number
-  price: number
-  description: string
-  img: string
-  title: string
-  id: number
-}
-export const ProductCard = (props: ProductCardType) => {
-  const favorite = false
+export const ProductCard = (props: DomainProductType) => {
+  const dispatch = useAppDispatch()
+
+  const handleAddToWishList = () => {
+    const product = { ...props }
+
+    dispatch(addProductToWishList({ product }))
+  }
 
   return (
     <Card
@@ -35,7 +35,7 @@ export const ProductCard = (props: ProductCardType) => {
       <CardContent className={s.CardContent}>
         <a href={`${PATH.product}${props.id}`}>
           <Box className={s.imgBox}>
-            <img src={props.img} alt="product cover" />
+            <img src={props.cover} alt="product cover" />
           </Box>
           <p>{props.title}</p>
         </a>
@@ -49,8 +49,9 @@ export const ProductCard = (props: ProductCardType) => {
             ${props.oldPrice}
           </Typography>
           <IconButton
+            onClick={handleAddToWishList}
             size="large"
-            color={favorite ? 'secondary' : 'primary'}
+            color={'secondary'}
             aria-label="add to favorite">
             <FavoriteIcon />
           </IconButton>
