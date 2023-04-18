@@ -1,6 +1,7 @@
 ///////////////////   OrderDomainType    /////////////////////
 
 export type OrderDomainType = {
+  // createdAt: string
   stripeId: string
   products: OrdersDataTypeDataAttributesProducts[]
 }
@@ -12,15 +13,16 @@ export type OrdersDataType = {
   meta: OrdersDataTypeMeta
 }
 export type OrdersDataTypeDataAttributesProducts = {
-  oldPrice: number
+  id: number
+  available: boolean
   category: string
   description: string
-  price: number
   title: string
-  id: number
+  price: number
+  oldPrice: number
+  cover: string
   quantity: number
-  available: boolean
-  img: string
+  imgAll: string[]
 }
 export type OrdersDataTypeDataAttributes = {
   stripeId: string
