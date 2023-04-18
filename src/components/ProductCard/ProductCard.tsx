@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
 import { PATH } from '../../pages/pages'
-import { DomainProductType } from '../../store/cart/cart.slice'
+import { addToCartAC, DomainProductType } from '../../store/cart/cart.slice'
 import { addProductToWishList } from '../../store/wishlist/wishlist.slice'
 import { useAppDispatch } from '../../utils/hooks/redux-hooks'
 
@@ -23,6 +23,11 @@ export const ProductCard = (props: DomainProductType) => {
     const product = { ...props }
 
     dispatch(addProductToWishList({ product }))
+  }
+  const handleAddToCart = () => {
+    const product = { ...props }
+
+    dispatch(addToCartAC({ product }))
   }
 
   return (
@@ -68,6 +73,7 @@ export const ProductCard = (props: DomainProductType) => {
         <Button
           variant="contained"
           disabled={!props.available}
+          onClick={handleAddToCart}
           startIcon={<AddShoppingCartIcon />}>
           Add to Cart
         </Button>

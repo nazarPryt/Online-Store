@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react'
 
+import Paper from '@mui/material/Paper'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+
 import { SectionMui } from '../../components/SectionMui/SectionMui'
 import { getAllOrdersTC } from '../../store/orders/order.thunk'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
 import s from './myOrders.module.scss'
+import { Order } from './Order/Order'
 
 export const MyOrders = () => {
   const dispatch = useAppDispatch()
@@ -19,6 +28,29 @@ export const MyOrders = () => {
       {!orders.length && (
         <h2 className={s.emptyText}>You didnt make eny order yet</h2>
       )}
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Dessert (100g serving)</TableCell>
+              <TableCell align="right">Calories</TableCell>
+              <TableCell align="right">Fat&nbsp;(g)</TableCell>
+              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {orders.map((order) => (
+              <Order
+                key={order.stripeId}
+                stripeId={order.stripeId}
+                products={order.products}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </SectionMui>
   )
 }

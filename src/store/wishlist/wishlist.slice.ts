@@ -14,7 +14,11 @@ export const wishlistSlice = createSlice({
       state,
       action: PayloadAction<{ product: DomainProductType }>
     ) => {
-      state.items.push(action.payload.product)
+      const isProductAdded = state.items.find(
+        (prod) => prod.id === action.payload.product.id
+      )
+
+      if (!isProductAdded) state.items.push(action.payload.product)
     },
     removeProductFromWishLisAC: (
       state,
