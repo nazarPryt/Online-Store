@@ -18,6 +18,18 @@ export const logInTC = createAsyncThunk(
   }
 )
 
+export const logOutTC = createAsyncThunk(
+  'auth/logOut',
+  async (arg, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(setIsLoggedIn({ value: false }))
+      await localStorage.removeItem('auth_token')
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
+
 export const initializeAppTC = createAsyncThunk(
   'auth/initialization',
   async (arg, thunkAPI) => {

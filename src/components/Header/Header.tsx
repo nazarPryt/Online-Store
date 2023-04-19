@@ -23,6 +23,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../pages/pages'
 import { setThemeAppAC } from '../../store/app/app.slice'
+import { logOutTC } from '../../store/auth/auth.thunks'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 import { Cart } from '../Cart/Cart'
 
@@ -104,6 +105,9 @@ export const Header = () => {
   const handleThemeChange = () => {
     dispatch(setThemeAppAC({ value: theme === 'light' ? 'dark' : 'light' }))
   }
+  const handleLogOut = () => {
+    dispatch(logOutTC())
+  }
 
   const menuId = 'primary-search-account-menu'
   const renderMenu = (
@@ -123,7 +127,7 @@ export const Header = () => {
       onClose={handleMenuClose}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={() => navigate(PATH.myOrders)}>My Orders</MenuItem>
-      <MenuItem onClick={handleMenuClose}>LogOut</MenuItem>
+      <MenuItem onClick={handleLogOut}>LogOut</MenuItem>
     </Menu>
   )
 

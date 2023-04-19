@@ -16,24 +16,16 @@ import s from './SingleProductPage.module.scss'
 
 export const SingleProductPage = () => {
   const data = useAppSelector((state) => state.product.productItem)
+  const photosToShow = useAppSelector((state) => state.product.photosToShow)
   const dispatch = useAppDispatch()
 
   const productId = useParams().id
   const [selectedImg, setSelectedImg] = useState(0)
   const [quantity, setQuantity] = useState(1)
 
-  const photosToShow: string[] = [
-    'https://picsum.photos/id/1/200/300',
-    'https://picsum.photos/id/2/200/300',
-    'https://picsum.photos/id/3/200/300',
-  ]
-
   useEffect(() => {
     if (productId) {
       dispatch(getSingleProductTC(+productId))
-
-      // photos.push(data.cover)
-      // data.imgAll.forEach((img) => photos.push(img))
     }
   }, [productId])
 
@@ -44,6 +36,14 @@ export const SingleProductPage = () => {
     }
 
     dispatch(addToCartAC({ product }))
+  }
+
+  const handleSubtractQuantity = () => {
+    setQuantity((prev) => (prev === 1 ? 1 : prev - 1))
+  }
+
+  const handleAddQuantity = () => {
+    setQuantity((prev) => prev + 1)
   }
 
   return (
@@ -59,7 +59,6 @@ export const SingleProductPage = () => {
             />
           ))}
         </Box>
-
         <Box className={s.mainImg}>
           <img src={photosToShow[selectedImg]} alt="productImg" />
         </Box>
@@ -73,14 +72,14 @@ export const SingleProductPage = () => {
           <IconButton
             aria-label="subtract"
             color="success"
-            onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}>
+            onClick={handleSubtractQuantity}>
             <RemoveIcon />
           </IconButton>
           {quantity}
           <IconButton
             aria-label="add"
             color="success"
-            onClick={() => setQuantity((prev) => prev + 1)}>
+            onClick={handleAddQuantity}>
             <AddIcon />
           </IconButton>
         </Box>

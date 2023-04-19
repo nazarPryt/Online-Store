@@ -5,8 +5,13 @@ import {
   returnDomainProducts,
   returnDomainProductType,
 } from '../../utils/handlers/returnDomainProductType'
+import { returnPhotosToShow } from '../../utils/handlers/returnPhotosToShow'
 
-import { setAllProductsAC, setProductAC } from './product.slice'
+import {
+  setAllProductsAC,
+  setPhotosToShowAC,
+  setProductAC,
+} from './product.slice'
 
 export const getSingleProductTC = createAsyncThunk(
   'product/getProduct',
@@ -14,8 +19,10 @@ export const getSingleProductTC = createAsyncThunk(
     try {
       const res = await productService.getSingleProduct(id)
       const domainData = returnDomainProductType(res.data)
+      const photos = returnPhotosToShow(domainData)
 
       thunkAPI.dispatch(setProductAC({ domainData }))
+      thunkAPI.dispatch(setPhotosToShowAC({ photos }))
     } catch (e) {
       console.log(e)
     }

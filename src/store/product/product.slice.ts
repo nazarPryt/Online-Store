@@ -5,6 +5,7 @@ import { DomainProductType } from '../cart/cart.slice'
 const initialState = {
   productItem: {} as DomainProductType,
   products: [] as DomainProductType[],
+  photosToShow: [] as string[],
 }
 
 export const productSlice = createSlice({
@@ -23,7 +24,11 @@ export const productSlice = createSlice({
     ) => {
       state.products = action.payload.domainData
     },
+    setPhotosToShowAC: (state, action: PayloadAction<{ photos: string[] }>) => {
+      state.photosToShow = action.payload.photos
+    },
   },
 })
-export const { setProductAC, setAllProductsAC } = productSlice.actions
+export const { setProductAC, setAllProductsAC, setPhotosToShowAC } =
+  productSlice.actions
 export const productReducer = productSlice.reducer

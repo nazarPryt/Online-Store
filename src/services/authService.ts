@@ -10,7 +10,10 @@ export const authService = {
 }
 
 //  Types  ///
-export type LoginDataType = { identifier: string; password: string }
+export type LoginDataType = {
+  identifier: string
+  password: string
+}
 
 export type ResponseType = {
   jwt: string
