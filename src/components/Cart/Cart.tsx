@@ -1,18 +1,15 @@
 import React from 'react'
 
-import DeleteIcon from '@mui/icons-material/Delete'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Drawer from '@mui/material/Drawer'
-import IconButton from '@mui/material/IconButton'
-import { loadStripe } from '@stripe/stripe-js'
 
-import imgNotFound from '../../assets/imgNotFound.png'
-import { instance } from '../../services/instance'
-import { removeItemAC, resetCartAC } from '../../store/cart/cart.slice'
+import { resetCartAC } from '../../store/cart/cart.slice'
+import { handlePaymentTC } from '../../store/cart/cart.thunk'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
 import s from './Cart.module.scss'
+import { CartProductItem } from './components/CartProductItem'
 
 export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
   const products = useAppSelector((state) => state.cart.items)
@@ -27,22 +24,11 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
 
     return total.toFixed(2)
   }
-
-  const handlePayment = async () => {
-    const stripePromise = loadStripe(
-      'pk_test_51MwTodKDtk8DBuSOn5gl7bCmFRkpQ5rSzE7trWoKjxH78o6w6rCII2AtDNfHnn02OJX5IQf4ry3spdhujEF1JhG100wjP2bmrq'
-    )
-
-    try {
-      const stripe = await stripePromise
-      const res = await instance.post('/api/orders', { products })
-
-      await stripe?.redirectToCheckout({
-        sessionId: res.data.stripeSession.id,
-      })
-    } catch (e) {
-      console.log(e)
-    }
+  const handleResetChart = () => {
+    dispatch(resetCartAC())
+  }
+  const handlePayment = () => {
+    dispatch(handlePaymentTC(products))
   }
 
   return (
@@ -52,29 +38,16 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
         {!products.length && (
           <h2 className={s.emptyText}>Your cart is empty</h2>
         )}
-        {products.map((item) => (
-          <Box
-            className={s.item}
-            key={item.id}
-            bgcolor={(theme) => theme.palette.background.default}>
-            {item.cover ? (
-              <img src={item.cover} alt="productPhoto" />
-            ) : (
-              <img src={imgNotFound} alt="productPhoto" />
-            )}
-            <div className={s.details}>
-              <h1>{item.title}</h1>
-              <p>{item.description.substring(0, 20)}...</p>
-              <Box color={(theme) => theme.palette.info.light}>
-                {item.quantity} x ${item.price}
-              </Box>
-            </div>
-            <IconButton
-              size={'small'}
-              onClick={() => dispatch(removeItemAC({ id: item.id }))}>
-              <DeleteIcon />
-            </IconButton>
-          </Box>
+        {products.map((product) => (
+          <CartProductItem
+            key={product.id}
+            price={product.price}
+            title={product.title}
+            id={product.id}
+            quantity={product.quantity}
+            description={product.description}
+            cover={product.cover}
+          />
         ))}
         <div className={s.total}>
           <span>SUBTOTAL</span>
@@ -86,7 +59,7 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
           onClick={handlePayment}>
           Pay
         </Button>
-        <span className={s.reset} onClick={() => dispatch(resetCartAC())}>
+        <span className={s.reset} onClick={handleResetChart}>
           Remove All
         </span>
       </Box>

@@ -13,7 +13,11 @@ export const returnDomainOrdersType = (
     const products: OrdersDataTypeDataAttributesProducts[] = []
 
     order.attributes.products.forEach((product) => products.push(product))
-    domainData.push({ stripeId: order.attributes.stripeId, products })
+    domainData.push({
+      stripeId: order.attributes.stripeId,
+      createdAt: order.attributes.createdAt,
+      products,
+    })
   })
 
   return domainData

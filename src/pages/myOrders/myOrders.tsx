@@ -34,13 +34,14 @@ export const MyOrders = () => {
             <TableRow>
               <TableCell />
               <TableCell>Stripe ID</TableCell>
-              <TableCell align="right">Purchase on</TableCell>
+              <TableCell align="center">Purchase on</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {orders.map((order) => (
               <Order
                 key={order.stripeId}
+                createdAt={order.createdAt}
                 stripeId={order.stripeId}
                 products={order.products}
               />

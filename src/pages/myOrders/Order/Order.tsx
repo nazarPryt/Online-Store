@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { TableFooter } from '@mui/material'
 import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
@@ -44,8 +43,8 @@ export const Order = (props: OrderDomainType) => {
         <TableCell component="th" scope="row">
           {props.stripeId}
         </TableCell>
-        <TableCell component="th" scope="row">
-          {props.stripeId}
+        <TableCell component="th" scope="row" align={'center'}>
+          {new Date(props.createdAt).toLocaleString()}
         </TableCell>
       </TableRow>
       <TableRow>

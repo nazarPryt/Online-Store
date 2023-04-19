@@ -19,14 +19,21 @@ import { orderReducer } from './orders/order.slice'
 import { productReducer } from './product/product.slice'
 import { wishlistReducer } from './wishlist/wishlist.slice'
 
-const persistConfig = {
-  key: 'root',
+const cartPersistConfig = {
+  key: 'cart',
   version: 1,
   storage,
 }
-
-const cartPersistedReducer = persistReducer(persistConfig, cartReducer)
-const wishlistPersistedReducer = persistReducer(persistConfig, wishlistReducer)
+const wishlistPersistConfig = {
+  key: 'wishlist',
+  version: 1,
+  storage,
+}
+const cartPersistedReducer = persistReducer(cartPersistConfig, cartReducer)
+const wishlistPersistedReducer = persistReducer(
+  wishlistPersistConfig,
+  wishlistReducer
+)
 
 export const store = configureStore({
   reducer: {

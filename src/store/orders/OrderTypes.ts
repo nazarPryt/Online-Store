@@ -1,7 +1,7 @@
 ///////////////////   OrderDomainType    /////////////////////
 
 export type OrderDomainType = {
-  // createdAt: string
+  createdAt: string
   stripeId: string
   products: OrdersDataTypeDataAttributesProducts[]
 }
