@@ -18,15 +18,13 @@ function App() {
     dispatch(initializeAppTC())
   }, [])
 
-  if (!isInitialized) {
-    return <Initialization />
-  }
   const theme = createTheme(getDesignTokens(themeApp))
 
   return (
     <>
       <ThemeProvider theme={theme}>
         <Pages />
+        <Initialization isInitialization={isInitialized} />
       </ThemeProvider>
     </>
   )
