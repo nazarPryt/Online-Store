@@ -12,6 +12,7 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny'
 import AppBar from '@mui/material/AppBar'
 import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import InputBase from '@mui/material/InputBase'
 import Link from '@mui/material/Link'
@@ -74,6 +75,7 @@ export const Header = () => {
   const navigate = useNavigate()
 
   const cartItems = useAppSelector((state) => state.cart.items)
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
   const wishlistItems = useAppSelector((state) => state.wishlist.items)
   const theme = useAppSelector((state) => state.app.themeApp)
 
@@ -216,7 +218,8 @@ export const Header = () => {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            sx={{ display: { xs: 'none', md: 'flex', alignItems: 'center' } }}>
             <IconButton
               onClick={handleThemeChange}
               size="large"
@@ -224,37 +227,42 @@ export const Header = () => {
               color="inherit">
               {theme === 'light' ? <WbSunnyIcon /> : <DarkModeIcon />}
             </IconButton>
+            {isLoggedIn ? (
+              <>
+                <IconButton
+                  size="large"
+                  aria-label="FavoriteIcon"
+                  color="inherit"
+                  onClick={() => navigate(PATH.wishlist)}>
+                  <Badge badgeContent={wishlistItems.length} color="error">
+                    <FavoriteIcon />
+                  </Badge>
+                </IconButton>
 
-            <IconButton
-              size="large"
-              aria-label="FavoriteIcon"
-              color="inherit"
-              onClick={() => navigate(PATH.wishlist)}>
-              <Badge badgeContent={wishlistItems.length} color="error">
-                <FavoriteIcon />
-              </Badge>
-            </IconButton>
+                <IconButton
+                  onClick={() => setIsChartOpen(!isChartOpen)}
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit">
+                  <Badge badgeContent={cartItems.length} color="error">
+                    <ShoppingCartIcon />
+                  </Badge>
+                </IconButton>
 
-            <IconButton
-              onClick={() => setIsChartOpen(!isChartOpen)}
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit">
-              <Badge badgeContent={cartItems.length} color="error">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
-
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit">
-              <AccountCircle />
-            </IconButton>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit">
+                  <AccountCircle />
+                </IconButton>
+              </>
+            ) : (
+              <Link href={PATH.login}>LogIn</Link>
+            )}
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton

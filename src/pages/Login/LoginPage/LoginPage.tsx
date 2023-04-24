@@ -3,6 +3,7 @@ import React from 'react'
 import { Navigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../../utils/hooks/redux-hooks'
+import { PATH } from '../../pages'
 
 import LoginPageBackGround from './../../../assets/LoginPageBackGround.jpg'
 import { ForgotPassForm } from './ForgotPassForm/ForgotPassForm'
@@ -16,7 +17,7 @@ export const LoginPage = () => {
   const accordion = useAppSelector((state) => state.app.loginAccordion)
 
   if (isLoggedIn) {
-    return <Navigate to={`/`} replace />
+    return <Navigate to={`${PATH.category}all-products`} replace />
   }
 
   return (
@@ -24,7 +25,7 @@ export const LoginPage = () => {
       <picture>
         <source media="(min-width:650px)" srcSet={LoginPageBackGround} />
         <source media="(min-width:465px)" srcSet={LoginPageBackGround} />
-        <img src={LoginPageBackGround} alt="Flowers" />
+        <img src={LoginPageBackGround} alt="bg-picture" />
       </picture>
       <div>
         <h1>login page</h1>

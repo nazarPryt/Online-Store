@@ -20,7 +20,7 @@ export const handlePaymentTC = createAsyncThunk(
         sessionId: res.data.stripeSession.id,
       })
 
-      await thunkAPI.dispatch(resetCartAC())
+      thunkAPI.dispatch(resetCartAC())
     } catch (e) {
       console.log(e)
     }

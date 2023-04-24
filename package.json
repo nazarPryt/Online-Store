@@ -1,6 +1,7 @@
 {
   "name": "shop_v1",
   "version": "0.1.0",
+  "homepage": "https://online-store-nazarpryt.vercel.app/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",

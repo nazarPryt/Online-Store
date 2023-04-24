@@ -56,10 +56,6 @@ export const Pages = () => {
         <Route path={'*'} element={<NotFoundPage />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
-      <Route
-        path={'/'}
-        element={<Navigate to={`${PATH.category}all-products`} />}
-      />
     </Routes>
   )
 }
