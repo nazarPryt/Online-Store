@@ -12,13 +12,12 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny'
 import AppBar from '@mui/material/AppBar'
 import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import InputBase from '@mui/material/InputBase'
 import Link from '@mui/material/Link'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import { styled, alpha } from '@mui/material/styles'
+import { alpha, styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
 import { useNavigate } from 'react-router-dom'
 
@@ -202,7 +201,7 @@ export const Header = () => {
             <MenuIcon />
           </IconButton>
           <Link
-            href={`${PATH.category}all-products`}
+            href={PATH.category}
             variant="h6"
             noWrap
             sx={{ display: { xs: 'none', sm: 'block' } }}>

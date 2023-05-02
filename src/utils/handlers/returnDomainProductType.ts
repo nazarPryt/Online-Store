@@ -10,7 +10,7 @@ export const returnDomainProductType = (
   const imgAll: string[] = []
 
   data.data.attributes.imgAll.data.forEach((picture) =>
-    imgAll.push(process.env.REACT_APP_BASE_URL + picture.attributes.url)
+    imgAll.push(picture.attributes.url)
   )
 
   return {
@@ -21,9 +21,7 @@ export const returnDomainProductType = (
     title: data.data.attributes.title,
     price: data.data.attributes.price,
     oldPrice: data.data.attributes.oldPrice,
-    cover:
-      process.env.REACT_APP_BASE_URL +
-      data.data.attributes.cover.data.attributes.url,
+    cover: data.data.attributes.cover.data.attributes.url,
     quantity: 1,
     imgAll,
   }
@@ -49,9 +47,7 @@ export const returnDomainProducts = (
       title: item.attributes.title,
       price: item.attributes.price,
       oldPrice: item.attributes.oldPrice,
-      cover:
-        process.env.REACT_APP_BASE_URL +
-        item.attributes.cover.data.attributes.url,
+      cover: item.attributes.cover.data.attributes.url,
       quantity: 1,
       imgAll,
     })

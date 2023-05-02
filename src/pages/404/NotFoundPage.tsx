@@ -12,7 +12,7 @@ export const NotFoundPage = () => {
   return (
     <SectionMui title={'Sorry! We cant’t Find that page!'}>
       <div className={s.wrapper}>
-        <Link href={`${PATH.category}all-products`}>Back to Shop</Link>
+        <Link href={PATH.category}>Back to Shop</Link>
         <img src={notFoundPicture} alt={'notFoundPicture'} />
       </div>
     </SectionMui>

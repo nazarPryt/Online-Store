@@ -23,7 +23,7 @@ export const PATH = {
   aboutUs: '/about',
   wishlist: '/wishlist',
   contact: '/contact',
-  category: '/category/',
+  category: '/category/:id',
   product: '/product/',
   successPayment: '/successPayment',
   errorPayment: '/errorPayment',
@@ -46,7 +46,7 @@ export const Pages = () => {
       </Route>
       <Route element={<Layout />}>
         <Route path={PATH.wishlist} element={<Wishlist />} />
-        <Route path={`${PATH.category}:id`} element={<CategoryPage />} />
+        <Route path={PATH.category} element={<CategoryPage />} />
         <Route path={`${PATH.product}:id`} element={<SingleProductPage />} />
         <Route path={PATH.successPayment} element={<SuccessPayment />} />
         <Route path={PATH.errorPayment} element={<ErrorPayment />} />
@@ -56,6 +56,7 @@ export const Pages = () => {
         <Route path={'*'} element={<NotFoundPage />} />
       </Route>
       <Route path={PATH.login} element={<LoginPage />} />
+      <Route path={'/'} element={<Navigate to={PATH.category} />} />
     </Routes>
   )
 }
