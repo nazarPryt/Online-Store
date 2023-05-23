@@ -5,6 +5,7 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider'
 
 import { Initialization } from './components/Initialization/Initialization'
 import { Pages } from './pages/pages'
+import { ACCESS_TOKEN } from './services/instance'
 import { CheckAuthTC } from './store/auth/auth.thunks'
 import { useAppDispatch, useAppSelector } from './utils/hooks/redux-hooks'
 import { getDesignTokens } from './utils/Theme/ThemeApp'
@@ -15,7 +16,11 @@ function App() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(CheckAuthTC())
+    const token = localStorage.getItem(ACCESS_TOKEN)
+
+    if (token) {
+      dispatch(CheckAuthTC())
+    }
   }, [])
 
   const theme = createTheme(getDesignTokens(themeApp))

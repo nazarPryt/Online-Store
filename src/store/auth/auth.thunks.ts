@@ -6,6 +6,7 @@ import {
   authService,
   LoginDataType,
 } from '../../services/authService'
+import { ACCESS_TOKEN } from '../../services/instance'
 
 import { setIsInitialized, setIsLoggedIn } from './auth.slice'
 
@@ -15,7 +16,7 @@ export const logInTC = createAsyncThunk(
     try {
       const res = await authService.logIn(data)
 
-      await localStorage.setItem('access_token', res.data.accessToken)
+      await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)
@@ -30,7 +31,7 @@ export const logOutTC = createAsyncThunk(
       await authService.logOut()
 
       thunkAPI.dispatch(setIsLoggedIn({ value: false }))
-      await localStorage.removeItem('access_token')
+      await localStorage.removeItem(ACCESS_TOKEN)
     } catch (e) {
       console.log(e)
     }
@@ -43,7 +44,7 @@ export const RegistrationTC = createAsyncThunk(
     try {
       const res = await authService.registration(data)
 
-      await localStorage.setItem('access_token', res.data.accessToken)
+      await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)
@@ -56,13 +57,13 @@ export const CheckAuthTC = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       const res = await axios.get<AuthResponseType>(
-        `${process.env.REACT_APP_BASE_URL}/api/refresh`,
+        `${process.env.REACT_APP_BASE_URL}/api/users/refresh`,
         {
           withCredentials: true,
         }
       )
 
-      await localStorage.setItem('access_token', res.data.accessToken)
+      await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)
@@ -71,18 +72,3 @@ export const CheckAuthTC = createAsyncThunk(
     }
   }
 )
-// export const initializeAppTC = createAsyncThunk(
-//   'auth/initialization',
-//   async (arg, thunkAPI) => {
-//     try {
-//       await authService.me()
-//
-//       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
-//       thunkAPI.dispatch(setIsInitialized({ value: true }))
-//     } catch (e) {
-//       console.log(e)
-//     } finally {
-//       thunkAPI.dispatch(setIsInitialized({ value: true }))
-//     }
-//   }
-// )
