@@ -1,6 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
-import { authService, LoginDataType } from '../../services/authService'
+import {
+  AuthResponseType,
+  authService,
+  LoginDataType,
+} from '../../services/authService'
 
 import { setIsInitialized, setIsLoggedIn } from './auth.slice'
 
@@ -42,6 +47,27 @@ export const RegistrationTC = createAsyncThunk(
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)
+    }
+  }
+)
+
+export const CheckAuthTC = createAsyncThunk(
+  'auth/checkAuth',
+  async (arg, thunkAPI) => {
+    try {
+      const res = await axios.get<AuthResponseType>(
+        `${process.env.REACT_APP_BASE_URL}/api/refresh`,
+        {
+          withCredentials: true,
+        }
+      )
+
+      await localStorage.setItem('access_token', res.data.accessToken)
+      thunkAPI.dispatch(setIsLoggedIn({ value: true }))
+    } catch (e) {
+      console.log(e)
+    } finally {
+      thunkAPI.dispatch(setIsInitialized({ value: true }))
     }
   }
 )
