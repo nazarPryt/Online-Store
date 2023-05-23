@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { DomainProductType } from '../cart/cart.slice'
+import { ProductDataType } from '../../services/productService'
 
 const initialState = {
-  items: [] as DomainProductType[],
+  items: [] as ProductDataType[],
 }
 
 export const wishlistSlice = createSlice({
@@ -12,33 +12,35 @@ export const wishlistSlice = createSlice({
   reducers: {
     addProductToWishList: (
       state,
-      action: PayloadAction<{ product: DomainProductType }>
+      action: PayloadAction<{ product: ProductDataType }>
     ) => {
       const isProductAdded = state.items.find(
-        (prod) => prod.id === action.payload.product.id
+        (prod) => prod._id === action.payload.product._id
       )
 
       if (!isProductAdded) state.items.push(action.payload.product)
     },
     removeProductFromWishLisAC: (
       state,
-      action: PayloadAction<{ id: number }>
+      action: PayloadAction<{ _id: string }>
     ) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id)
+      state.items = state.items.filter(
+        (item) => item._id !== action.payload._id
+      )
     },
     cleanWishListAC: (state) => {
       state.items = []
     },
-    augmentQuantityAC: (state, action: PayloadAction<{ id: number }>) => {
+    augmentQuantityAC: (state, action: PayloadAction<{ _id: string }>) => {
       const product = state.items.find(
-        (product) => product.id === action.payload.id
+        (product) => product._id === action.payload._id
       )
 
       if (product) product.quantity += 1
     },
-    reduceQuantityAC: (state, action: PayloadAction<{ id: number }>) => {
+    reduceQuantityAC: (state, action: PayloadAction<{ _id: string }>) => {
       const product = state.items.find(
-        (product) => product.id === action.payload.id
+        (product) => product._id === action.payload._id
       )
 
       if (product) {

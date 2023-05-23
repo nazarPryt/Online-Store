@@ -10,13 +10,14 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
 import { PATH } from '../../pages/pages'
-import { addToCartAC, DomainProductType } from '../../store/cart/cart.slice'
+import { ProductDataType } from '../../services/productService'
+import { addToCartAC } from '../../store/cart/cart.slice'
 import { addProductToWishList } from '../../store/wishlist/wishlist.slice'
 import { useAppDispatch } from '../../utils/hooks/redux-hooks'
 
 import s from './ProductCard.module.scss'
 
-export const ProductCard = (props: DomainProductType) => {
+export const ProductCard = (props: ProductDataType) => {
   const dispatch = useAppDispatch()
 
   const handleAddToWishList = () => {
@@ -38,7 +39,7 @@ export const ProductCard = (props: DomainProductType) => {
         overflow: 'hidden',
       }}>
       <CardContent className={s.CardContent}>
-        <a href={`${PATH.product}${props.id}`}>
+        <a href={`${PATH.product}${props._id}`}>
           <Box className={s.imgBox}>
             <img src={props.cover} alt="product cover" />
           </Box>

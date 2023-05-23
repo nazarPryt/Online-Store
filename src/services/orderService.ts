@@ -1,7 +1,7 @@
-import { DomainProductType } from '../store/cart/cart.slice'
 import { OrdersDataType } from '../store/orders/OrderTypes'
 
 import { instance } from './instance'
+import { ProductDataType } from './productService'
 
 export const orderService = {
   getAllOrders() {
@@ -9,7 +9,7 @@ export const orderService = {
       params: { populate: '*' },
     })
   },
-  makePayment(products: DomainProductType[]) {
+  makePayment(products: ProductDataType[]) {
     return instance.post('/api/orders', { products })
   },
 }

@@ -40,10 +40,10 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
         )}
         {products.map((product) => (
           <CartProductItem
-            key={product.id}
+            key={product._id}
             price={product.price}
             title={product.title}
-            id={product.id}
+            id={product._id}
             quantity={product.quantity}
             description={product.description}
             cover={product.cover}

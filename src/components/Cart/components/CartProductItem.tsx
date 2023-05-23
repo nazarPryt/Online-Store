@@ -5,16 +5,16 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 
 import imgNotFound from '../../../assets/imgNotFound.png'
-import { DomainProductType, removeItemAC } from '../../../store/cart/cart.slice'
+import { removeItemAC } from '../../../store/cart/cart.slice'
 import { useAppDispatch } from '../../../utils/hooks/redux-hooks'
 
 import s from './CartProductItem.module.scss'
 
-type CartProductItemType = Pick<
-  DomainProductType,
-  'price' | 'description' | 'quantity' | 'id' | 'title' | 'cover'
->
-export const CartProductItem = (props: CartProductItemType) => {
+// type CartProductItemType = Pick<
+//   DomainProductType,
+//   'price' | 'description' | 'quantity' | 'id' | 'title' | 'cover'
+// >
+export const CartProductItem = (props: any) => {
   const dispatch = useAppDispatch()
 
   return (

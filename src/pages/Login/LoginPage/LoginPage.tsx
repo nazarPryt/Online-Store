@@ -17,7 +17,7 @@ export const LoginPage = () => {
   const accordion = useAppSelector((state) => state.app.loginAccordion)
 
   if (isLoggedIn) {
-    return <Navigate to={`${PATH.category}all-products`} replace />
+    return <Navigate to={PATH.category} replace />
   }
 
   return (

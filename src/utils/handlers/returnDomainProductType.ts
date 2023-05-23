@@ -1,15 +1,7 @@
-import {
-  AllProductsDataType,
-  ProductDataType,
-} from '../../services/servicesTypes'
-import { DomainProductType } from '../../store/cart/cart.slice'
-
-export const returnDomainProductType = (
-  data: ProductDataType
-): DomainProductType => {
+export const returnDomainProductType = (data: any) => {
   const imgAll: string[] = []
 
-  data.data.attributes.imgAll.data.forEach((picture) =>
+  data.data.attributes.imgAll.data.forEach((picture: any) =>
     imgAll.push(picture.attributes.url)
   )
 
@@ -27,15 +19,13 @@ export const returnDomainProductType = (
   }
 }
 
-export const returnDomainProducts = (
-  data: AllProductsDataType
-): DomainProductType[] => {
-  const domainData: DomainProductType[] = []
+export const returnDomainProducts = (data: any) => {
+  const domainData: any = []
 
-  data.data.forEach((item) => {
+  data.data.forEach((item: any) => {
     const imgAll: string[] = []
 
-    item.attributes.imgAll.data.forEach((img) =>
+    item.attributes.imgAll.data.forEach((img: any) =>
       imgAll.push(img.attributes.url)
     )
 

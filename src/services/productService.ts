@@ -1,15 +1,23 @@
 import { instance } from './instance'
-import { AllProductsDataType, ProductDataType } from './servicesTypes'
 
 export const productService = {
   getSingleProduct(id: number) {
-    return instance.get<ProductDataType>(`/api/products/${id}`, {
-      params: { populate: '*' },
-    })
+    return instance.get<ProductDataType>(`/api/products/${id}`)
   },
   getAllProducts() {
-    return instance.get<AllProductsDataType>(`/api/products`, {
-      params: { populate: '*' },
-    })
+    return instance.get<ProductDataType[]>(`/api/products`)
   },
+}
+
+export type ProductDataType = {
+  _id: string
+  available: boolean
+  description: string
+  title: string
+  price: number
+  oldPrice: number
+  quantity: number
+  cover: string
+  imgAll: string[]
+  category: string[]
 }

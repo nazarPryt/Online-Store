@@ -10,8 +10,8 @@ export const logInTC = createAsyncThunk(
     try {
       const res = await authService.logIn(data)
 
+      await localStorage.setItem('access_token', res.data.accessToken)
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
-      await localStorage.setItem('auth_token', res.data.jwt)
     } catch (e) {
       console.log(e)
     }
@@ -22,26 +22,41 @@ export const logOutTC = createAsyncThunk(
   'auth/logOut',
   async (arg, thunkAPI) => {
     try {
+      await authService.logOut()
+
       thunkAPI.dispatch(setIsLoggedIn({ value: false }))
-      await localStorage.removeItem('auth_token')
+      await localStorage.removeItem('access_token')
     } catch (e) {
       console.log(e)
     }
   }
 )
 
-export const initializeAppTC = createAsyncThunk(
-  'auth/initialization',
-  async (arg, thunkAPI) => {
+export const RegistrationTC = createAsyncThunk(
+  'auth/registration',
+  async (data: LoginDataType, thunkAPI) => {
     try {
-      await authService.me()
+      const res = await authService.registration(data)
 
+      await localStorage.setItem('access_token', res.data.accessToken)
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
-      thunkAPI.dispatch(setIsInitialized({ value: true }))
     } catch (e) {
       console.log(e)
-    } finally {
-      thunkAPI.dispatch(setIsInitialized({ value: true }))
     }
   }
 )
+// export const initializeAppTC = createAsyncThunk(
+//   'auth/initialization',
+//   async (arg, thunkAPI) => {
+//     try {
+//       await authService.me()
+//
+//       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
+//       thunkAPI.dispatch(setIsInitialized({ value: true }))
+//     } catch (e) {
+//       console.log(e)
+//     } finally {
+//       thunkAPI.dispatch(setIsInitialized({ value: true }))
+//     }
+//   }
+// )

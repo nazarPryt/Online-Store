@@ -2,31 +2,30 @@ import { instance } from './instance'
 
 export const authService = {
   logIn(data: LoginDataType) {
-    return instance.post<ResponseType>('/api/auth/local', data)
+    return instance.post<ResponseType>('/api/users/login', data)
   },
-  me() {
-    return instance.get<UserDataResponse>('/api/users/me')
+  logOut() {
+    return instance.post<'logout'>('/api/users/logout')
+  },
+  registration(data: LoginDataType) {
+    return instance.post<ResponseType>('/api/users/registration', data)
   },
 }
 
 //  Types  ///
 export type LoginDataType = {
-  identifier: string
+  email: string
   password: string
 }
 
 export type ResponseType = {
-  jwt: string
-  user: UserDataResponse
+  accessToken: string
+  refreshToken: string
+  user: ResponseTypeUser
 }
 
-export type UserDataResponse = {
-  blocked: boolean
-  confirmed: boolean
-  createdAt: string
+export type ResponseTypeUser = {
   email: string
-  id: number
-  provider: string
-  updatedAt: string
-  username: string
+  id: string
+  isActivated: boolean
 }

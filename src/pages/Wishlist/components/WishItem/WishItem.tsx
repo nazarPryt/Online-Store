@@ -8,10 +8,8 @@ import IconButton from '@mui/material/IconButton'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 
-import {
-  addToCartAC,
-  DomainProductType,
-} from '../../../../store/cart/cart.slice'
+import { ProductDataType } from '../../../../services/productService'
+import { addToCartAC } from '../../../../store/cart/cart.slice'
 import {
   augmentQuantityAC,
   reduceQuantityAC,
@@ -22,7 +20,7 @@ import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
 import imgNotFound from './../../../../assets/imgNotFound.png'
 import s from './WishItem.module.scss'
 
-export const WishItem = (props: DomainProductType) => {
+export const WishItem = (props: ProductDataType) => {
   const dispatch = useAppDispatch()
 
   const totalPrice = () => {
@@ -32,17 +30,17 @@ export const WishItem = (props: DomainProductType) => {
     dispatch(addToCartAC({ product: { ...props } }))
   }
   const handleRemoveFromWishList = () => {
-    dispatch(removeProductFromWishLisAC({ id: props.id }))
+    dispatch(removeProductFromWishLisAC({ _id: props._id }))
   }
   const handleAugmentQuantity = () => {
-    dispatch(augmentQuantityAC({ id: props.id }))
+    dispatch(augmentQuantityAC({ _id: props._id }))
   }
   const handleReduceQuantity = () => {
-    dispatch(reduceQuantityAC({ id: props.id }))
+    dispatch(reduceQuantityAC({ _id: props._id }))
   }
 
   return (
-    <TableRow key={props.id} className={s.wrapper}>
+    <TableRow key={props._id} className={s.wrapper}>
       <TableCell align="center" className={s.tableCell}>
         {props.cover ? (
           <img src={props.cover} alt="item img" />

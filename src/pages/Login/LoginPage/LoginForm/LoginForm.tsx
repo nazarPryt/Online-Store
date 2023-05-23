@@ -2,15 +2,16 @@ import React from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import { LoginDataType } from '../../../../services/authService'
 import { setLoginAccordionAC } from '../../../../store/app/app.slice'
 import { logInTC } from '../../../../store/auth/auth.thunks'
 import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import s from '../LoginPage.module.scss'
 
-const defaultValues = {
-  identifier: '' as string,
-  password: '' as string,
+const defaultValues: LoginDataType = {
+  email: '',
+  password: '',
 }
 
 export const LoginForm = () => {
@@ -23,7 +24,7 @@ export const LoginForm = () => {
   } = useForm<typeof defaultValues>({
     defaultValues,
   })
-  const onSubmit: SubmitHandler<typeof defaultValues> = (data) => {
+  const onSubmit: SubmitHandler<LoginDataType> = (data) => {
     dispatch(logInTC(data))
   }
 
@@ -36,14 +37,14 @@ export const LoginForm = () => {
       <h3>Login Here</h3>
       <div>
         <input
-          {...register('identifier', {
+          {...register('email', {
             required: true,
             pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
           })}
           type={'email'}
           placeholder="&#xF199;   Email"
         />
-        {errors.identifier && <ErrorMessage text={'Email is not valid'} />}
+        {errors.email && <ErrorMessage text={'Email is not valid'} />}
         {/*{isDirty ||*/}
         {/*  (touchedFields.email && <ErrorMessage text={'Email is required!'} />)}*/}
       </div>

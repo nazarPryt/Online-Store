@@ -46,8 +46,8 @@ export const Wishlist = () => {
                       description={row.description}
                       price={row.price}
                       title={row.title}
-                      id={row.id}
-                      key={row.id}
+                      _id={row._id}
+                      key={row._id}
                       quantity={row.quantity}
                       available={row.available}
                       cover={row.cover}

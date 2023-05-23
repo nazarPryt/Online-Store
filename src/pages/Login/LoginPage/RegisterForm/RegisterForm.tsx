@@ -2,6 +2,8 @@ import React from 'react'
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import { RegistrationTC } from '../../../../store/auth/auth.thunks'
+import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import s from '../LoginPage.module.scss'
 
@@ -11,6 +13,7 @@ type Inputs = {
   confirmPassword: string
 }
 export const RegisterForm = () => {
+  const dispatch = useAppDispatch()
   const {
     register,
     handleSubmit,
@@ -25,7 +28,7 @@ export const RegisterForm = () => {
   })
 
   const onSubmit: SubmitHandler<Inputs> = (data) =>
-    alert(JSON.stringify(data, null, 2))
+    dispatch(RegistrationTC(data))
 
   return (
     <form className={s.formWrap} onSubmit={handleSubmit(onSubmit)}>
