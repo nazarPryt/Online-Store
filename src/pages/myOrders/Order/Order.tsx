@@ -12,11 +12,11 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 
-import { OrderDomainType } from '../../../store/orders/OrderTypes'
+import { OrderDataType } from '../../../store/orders/order.slice'
 
 import s from './Order.module.scss'
 
-export const Order = (props: OrderDomainType) => {
+export const Order = (props: OrderDataType) => {
   const [open, setOpen] = useState(false)
 
   const totalPrice = () => {
@@ -66,7 +66,7 @@ export const Order = (props: OrderDomainType) => {
                 </TableHead>
                 <TableBody>
                   {props.products.map((product) => (
-                    <TableRow key={product.id}>
+                    <TableRow key={product._id}>
                       <TableCell component="th" scope="row">
                         <div className={s.productImg}>
                           <img src={product.cover} alt="product img" />

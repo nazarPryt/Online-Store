@@ -1,8 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+type AuthUserData = {
+  email: string
+  id: string
+  isActivated: boolean
+}
+
 const initialState = {
   isLoggedIn: false as boolean,
   isInitialized: false as boolean,
+  user: {} as AuthUserData,
 }
 
 export const authSlice = createSlice({
@@ -15,9 +22,13 @@ export const authSlice = createSlice({
     setIsInitialized: (state, action: PayloadAction<{ value: boolean }>) => {
       state.isInitialized = action.payload.value
     },
+    setUserData: (state, action: PayloadAction<{ user: AuthUserData }>) => {
+      state.user = action.payload.user
+    },
   },
 })
 
-export const { setIsLoggedIn, setIsInitialized } = authSlice.actions
+export const { setIsLoggedIn, setIsInitialized, setUserData } =
+  authSlice.actions
 
 export const authReducer = authSlice.reducer

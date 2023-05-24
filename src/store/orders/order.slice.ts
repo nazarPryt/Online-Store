@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { OrderDomainType } from './OrderTypes'
+import { ProductDataType } from '../../services/productService'
 
 const initialState = {
-  items: [] as OrderDomainType[],
+  items: [] as OrderDataType[],
 }
 
 export const orderSlice = createSlice({
@@ -12,9 +12,9 @@ export const orderSlice = createSlice({
   reducers: {
     setAllOrdersAC: (
       state,
-      action: PayloadAction<{ orders: OrderDomainType[] }>
+      action: PayloadAction<{ order: OrderDataType[] }>
     ) => {
-      state.items = action.payload.orders
+      state.items = action.payload.order
     },
   },
 })
@@ -22,3 +22,11 @@ export const orderSlice = createSlice({
 export const { setAllOrdersAC } = orderSlice.actions
 
 export const orderReducer = orderSlice.reducer
+
+export type OrderDataType = {
+  _id: string
+  userID: string
+  stripeId: string
+  createdAt: string
+  products: ProductDataType[]
+}

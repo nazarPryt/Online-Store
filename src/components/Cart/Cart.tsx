@@ -13,6 +13,7 @@ import { CartProductItem } from './components/CartProductItem'
 
 export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
   const products = useAppSelector((state) => state.cart.items)
+  const userID = useAppSelector((state) => state.auth.user.id)
   const dispatch = useAppDispatch()
 
   const totalPrice = () => {
@@ -28,7 +29,7 @@ export const Cart = (props: { isOpen: boolean; handleClose: () => void }) => {
     dispatch(resetCartAC())
   }
   const handlePayment = () => {
-    dispatch(handlePaymentTC(products))
+    dispatch(handlePaymentTC({ products, userID }))
   }
 
   return (

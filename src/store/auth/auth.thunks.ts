@@ -8,7 +8,7 @@ import {
 } from '../../services/authService'
 import { ACCESS_TOKEN } from '../../services/instance'
 
-import { setIsInitialized, setIsLoggedIn } from './auth.slice'
+import { setIsInitialized, setIsLoggedIn, setUserData } from './auth.slice'
 
 export const logInTC = createAsyncThunk(
   'auth/logIn',
@@ -17,6 +17,7 @@ export const logInTC = createAsyncThunk(
       const res = await authService.logIn(data)
 
       await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
+      thunkAPI.dispatch(setUserData({ user: res.data.user }))
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)
@@ -45,6 +46,7 @@ export const RegistrationTC = createAsyncThunk(
       const res = await authService.registration(data)
 
       await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
+      thunkAPI.dispatch(setUserData({ user: res.data.user }))
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)
@@ -64,6 +66,7 @@ export const CheckAuthTC = createAsyncThunk(
       )
 
       await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
+      thunkAPI.dispatch(setUserData({ user: res.data.user }))
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)

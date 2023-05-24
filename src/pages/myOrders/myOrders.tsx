@@ -40,7 +40,9 @@ export const MyOrders = () => {
           <TableBody>
             {orders.map((order) => (
               <Order
+                _id={order._id}
                 key={order.stripeId}
+                userID={order.userID}
                 createdAt={order.createdAt}
                 stripeId={order.stripeId}
                 products={order.products}

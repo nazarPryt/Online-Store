@@ -8,14 +8,17 @@ import { resetCartAC } from './cart.slice'
 
 export const handlePaymentTC = createAsyncThunk(
   'orders/handlePayment',
-  async (products: ProductDataType[], thunkAPI) => {
+  async (data: { products: ProductDataType[]; userID: string }, thunkAPI) => {
     const stripePromise = loadStripe(
       'pk_test_51MwTodKDtk8DBuSOn5gl7bCmFRkpQ5rSzE7trWoKjxH78o6w6rCII2AtDNfHnn02OJX5IQf4ry3spdhujEF1JhG100wjP2bmrq'
     )
 
     try {
       const stripe = await stripePromise
-      const res = await orderService.makePayment(products)
+      const res = await orderService.makePayment({
+        products: data.products,
+        userID: data.userID,
+      })
 
       await stripe?.redirectToCheckout({
         sessionId: res.data.stripeSession.id,

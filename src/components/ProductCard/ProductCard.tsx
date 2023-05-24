@@ -71,6 +71,7 @@ export const ProductCard = (props: ProductDataType) => {
             Not available
           </Typography>
         )}
+
         <Button
           variant="contained"
           disabled={!props.available}

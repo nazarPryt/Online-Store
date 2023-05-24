@@ -1,15 +1,13 @@
-import { OrdersDataType } from '../store/orders/OrderTypes'
+import { OrderDataType } from '../store/orders/order.slice'
 
 import { instance } from './instance'
 import { ProductDataType } from './productService'
 
 export const orderService = {
   getAllOrders() {
-    return instance.get<OrdersDataType>(`/api/orders`, {
-      params: { populate: '*' },
-    })
+    return instance.get<OrderDataType[]>(`/api/orders/my`)
   },
-  makePayment(products: ProductDataType[]) {
-    return instance.post('/api/orders', { products })
+  makePayment(data: { products: ProductDataType[]; userID: string }) {
+    return instance.post('/api/orders', data)
   },
 }
