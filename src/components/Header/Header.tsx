@@ -126,7 +126,7 @@ export const Header = () => {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}>
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={() => navigate(PATH.user)}>Profile</MenuItem>
       <MenuItem onClick={() => navigate(PATH.myOrders)}>My Orders</MenuItem>
       <MenuItem onClick={handleLogOut}>LogOut</MenuItem>
     </Menu>

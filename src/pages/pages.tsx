@@ -34,17 +34,17 @@ export const Pages = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
 
   const RequireAuth = () => {
-    if (!isLoggedIn) return <Navigate to={PATH.login} replace />
+    if (!isLoggedIn) return <Navigate to={PATH.category} replace />
 
     return <Outlet />
   }
 
   return (
     <Routes>
-      <Route element={<RequireAuth />}>
-        <Route path={PATH.user} element={<UserPage />} />
-      </Route>
       <Route element={<Layout />}>
+        <Route element={<RequireAuth />}>
+          <Route path={PATH.user} element={<UserPage />} />
+        </Route>
         <Route path={PATH.wishlist} element={<Wishlist />} />
         <Route path={PATH.category} element={<CategoryPage />} />
         <Route path={`${PATH.product}:id`} element={<SingleProductPage />} />

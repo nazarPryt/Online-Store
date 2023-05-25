@@ -57,6 +57,7 @@ export const RegistrationTC = createAsyncThunk(
 export const CheckAuthTC = createAsyncThunk(
   'auth/checkAuth',
   async (arg, thunkAPI) => {
+    thunkAPI.dispatch(setIsInitialized({ value: false }))
     try {
       const res = await axios.get<AuthResponseType>(
         `${process.env.REACT_APP_BASE_URL}/api/users/refresh`,

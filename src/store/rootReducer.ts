@@ -11,6 +11,7 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+import { adminReducer } from './admin/admin.slice'
 import { appReducer } from './app/app.slice'
 import { authReducer } from './auth/auth.slice'
 import { cartReducer } from './cart/cart.slice'
@@ -41,6 +42,7 @@ export const store = configureStore({
     wishlist: wishlistPersistedReducer,
     auth: authReducer,
     app: appReducer,
+    admin: adminReducer,
     product: productReducer,
     category: categoryReducer,
     orders: orderReducer,

@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { productService } from '../../services/productService'
-import { returnDomainProducts } from '../../utils/handlers/returnDomainProductType'
 
 import { setAllProductsAC } from './product.slice'
 
@@ -25,7 +24,6 @@ export const getAllProductsTC = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       const res = await productService.getAllProducts()
-      // const domainData = returnDomainProducts(res.data)
 
       thunkAPI.dispatch(setAllProductsAC({ products: res.data }))
     } catch (e) {

@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-type AuthUserData = {
-  email: string
-  id: string
-  isActivated: boolean
-}
+import { AuthUserData } from '../../services/authService'
 
 const initialState = {
   isLoggedIn: false as boolean,

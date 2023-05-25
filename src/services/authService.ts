@@ -21,11 +21,12 @@ export type LoginDataType = {
 export type AuthResponseType = {
   accessToken: string
   refreshToken: string
-  user: ResponseTypeUser
+  user: AuthUserData
 }
 
-export type ResponseTypeUser = {
+export type AuthUserData = {
   email: string
   id: string
   isActivated: boolean
+  role: 'ADMIN' | 'USER'
 }
