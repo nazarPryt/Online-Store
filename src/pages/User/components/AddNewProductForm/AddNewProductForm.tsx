@@ -6,40 +6,53 @@ import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
+import { InferType, object } from 'yup'
 
 import s from './AddNewProductForm.module.scss'
 import { MultipleSelect } from './components/MultipleSelect'
 
-type Inputs = {
-  title: string
-  description: string
-  available: boolean
-  price: number
-  oldPrice: number
-  cover: string
-  imgAll: string[]
-  category: string[]
-}
+export const Categories = [
+  'Computers',
+  'Tablets',
+  'Televisions',
+  'Smartphones',
+  'Electronics',
+  'Washing machines',
+] as const
 
-const schema = yup
-  .object()
-  .shape({
-    title: yup.string().required(),
-    description: yup.string().required(),
-    available: yup.boolean().required(),
-    price: yup.number().positive().required(),
-    oldPrice: yup.number().positive().required(),
-    cover: yup.string().required(),
-    imgAll: yup.string().required(),
-    category: yup.array().required(),
-  })
-  .required()
+type CategoriesType = typeof Categories
+
+const ProductSchema = object({
+  title: yup.string().required(),
+  description: yup.string().required(),
+  available: yup.boolean().required(),
+  price: yup.number().positive().required(),
+  oldPrice: yup.number().positive().required(),
+  cover: yup.string().required(),
+  imgAll: yup.array().of(yup.string()).required(),
+  category: yup.array().of(yup.string()),
+})
+
+type ProductType = InferType<typeof ProductSchema>
 
 export const AddNewProductForm = () => {
-  const { register, handleSubmit, watch, setValue } = useForm<Inputs>({
-    resolver: yupResolver(schema),
+  const { register, handleSubmit, watch, setValue } = useForm<ProductType>({
+    resolver: yupResolver(ProductSchema),
+    defaultValues: {
+      available: true,
+      category: ['iphone'],
+      description: 'some descripttion',
+      price: 500,
+      oldPrice: 600,
+      title: 'iphone',
+      cover: 'https://picsum.photos/200/300',
+      imgAll: [
+        'https://picsum.photos/200/300',
+        'https://picsum.photos/200/300',
+      ],
+    },
   })
-  const selectValue = watch('category')
+  const selectValue = watch('category') as string[]
   const handleChange = (value: string[]) => setValue('category', value)
 
   return (

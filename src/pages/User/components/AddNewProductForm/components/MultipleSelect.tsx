@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 
 import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
@@ -7,6 +8,8 @@ import ListItemText from '@mui/material/ListItemText'
 import MenuItem from '@mui/material/MenuItem'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+
+import { Categories } from '../AddNewProductForm'
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
@@ -19,37 +22,21 @@ const MenuProps = {
   },
 }
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-]
-
 //https://react-hook-form.com/advanced-usage
 
 export const MultipleSelect = (props: {
   value: string[]
   onChange: (value: string[]) => void
 }) => {
-  const [personName, setPersonName] = React.useState<string[]>([])
+  const [categoryName, setCategoryName] = useState<string[]>([])
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = (event: SelectChangeEvent<typeof categoryName>) => {
     const {
       target: { value },
     } = event
 
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    )
-    props.onChange(personName)
+    setCategoryName(typeof value === 'string' ? value.split(',') : value)
+    props.onChange(categoryName)
   }
 
   return (
@@ -60,15 +47,15 @@ export const MultipleSelect = (props: {
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
-          value={personName}
+          value={categoryName}
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}>
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
+          {Categories.map((category) => (
+            <MenuItem key={category} value={category}>
+              <Checkbox checked={categoryName.indexOf(category) > -1} />
+              <ListItemText primary={category} />
             </MenuItem>
           ))}
         </Select>
