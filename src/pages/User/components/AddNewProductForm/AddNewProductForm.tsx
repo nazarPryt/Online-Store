@@ -8,6 +8,9 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { InferType, object } from 'yup'
 
+import { AddProductTC } from '../../../../store/product/product.thunk'
+import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
+
 import s from './AddNewProductForm.module.scss'
 import { MultipleSelect } from './components/MultipleSelect'
 
@@ -29,83 +32,80 @@ const ProductSchema = object({
   price: yup.number().positive().required(),
   oldPrice: yup.number().positive().required(),
   cover: yup.string().required(),
-  imgAll: yup.array().of(yup.string()).required(),
-  category: yup.array().of(yup.string()),
+  imgAll: yup.string().required(),
+  category: yup.string().required(),
 })
 
-type ProductType = InferType<typeof ProductSchema>
+export type ProductType = InferType<typeof ProductSchema>
 
 export const AddNewProductForm = () => {
+  const dispatch = useAppDispatch()
+
   const { register, handleSubmit, watch, setValue } = useForm<ProductType>({
     resolver: yupResolver(ProductSchema),
     defaultValues: {
       available: true,
-      category: ['iphone'],
+      category: 'iphone',
       description: 'some descripttion',
       price: 500,
       oldPrice: 600,
       title: 'iphone',
       cover: 'https://picsum.photos/200/300',
-      imgAll: [
-        'https://picsum.photos/200/300',
-        'https://picsum.photos/200/300',
-      ],
+      imgAll: 'https://picsum.photos/200/300',
     },
   })
-  const selectValue = watch('category') as string[]
-  const handleChange = (value: string[]) => setValue('category', value)
+  // const selectValue = watch('category') as string[]
+  // const handleChange = (value: string[]) => setValue('category', value)
 
   return (
-    <div>
-      <form
-        className={s.form}
-        onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
-        <TextField
-          label="Title"
-          variant="outlined"
-          type="text"
-          {...register('title')}
-        />
+    <form
+      className={s.form}
+      onSubmit={handleSubmit((data) => dispatch(AddProductTC(data)))}>
+      <TextField
+        label="Title"
+        variant="outlined"
+        type="text"
+        {...register('title')}
+      />
 
-        <TextField
-          label="Description"
-          multiline
-          maxRows={4}
-          variant="outlined"
-          {...register('description')}
-        />
+      <TextField
+        label="Description"
+        multiline
+        maxRows={4}
+        variant="outlined"
+        {...register('description')}
+      />
 
-        <label>
-          Available:
-          <Checkbox defaultChecked color="success" {...register('available')} />
-        </label>
+      <label>
+        Available:
+        <Checkbox defaultChecked color="success" {...register('available')} />
+      </label>
 
-        <label>
-          Price:
-          <input type="number" {...register('price')} />
-        </label>
+      <label>
+        Price:
+        <input type="number" {...register('price')} />
+      </label>
 
-        <label>
-          Old Price:
-          <input type="number" {...register('oldPrice')} />
-        </label>
+      <label>
+        Old Price:
+        <input type="number" {...register('oldPrice')} />
+      </label>
 
-        <MultipleSelect value={selectValue} onChange={handleChange} />
+      {/*<MultipleSelect value={selectValue} onChange={handleChange} />*/}
 
-        <label>
-          Cover:
-          <input type="file" {...register('cover')} />
-        </label>
+      <label>
+        Cover:
+        <input type="file" {...register('cover')} />
+      </label>
 
-        <label>
-          All Images:
-          <input type="file" {...register('imgAll')} />
-        </label>
+      <label>
+        All Images:
+        <input type="file" {...register('imgAll')} />
+      </label>
 
-        <Button type="submit" variant={'contained'}>
-          Send
-        </Button>
-      </form>
-    </div>
+      <Button type="submit" variant={'contained'}>
+        Send
+      </Button>
+    </form>
   )
 }

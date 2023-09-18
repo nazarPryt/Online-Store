@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import { ProductType } from '../../pages/User/components/AddNewProductForm/AddNewProductForm'
 import { productService } from '../../services/productService'
 
 import { setAllProductsAC } from './product.slice'
@@ -19,6 +20,7 @@ export const getSingleProductTC = createAsyncThunk(
     }
   }
 )
+
 export const getAllProductsTC = createAsyncThunk(
   'product/getAllProducts',
   async (arg, thunkAPI) => {
@@ -26,6 +28,19 @@ export const getAllProductsTC = createAsyncThunk(
       const res = await productService.getAllProducts()
 
       thunkAPI.dispatch(setAllProductsAC({ products: res.data }))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
+
+export const AddProductTC = createAsyncThunk(
+  'product/AddProduct',
+  async (product: ProductType, thunkAPI) => {
+    try {
+      const res = await productService.AddProduct(product)
+
+      thunkAPI.dispatch(setAllProductsAC({ products: [res.createdProduct] }))
     } catch (e) {
       console.log(e)
     }
