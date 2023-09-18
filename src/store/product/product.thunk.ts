@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 import { ProductType } from '../../pages/User/components/AddNewProductForm/AddNewProductForm'
 import { productService } from '../../services/productService'
+import { handleServerNetworkError } from '../../utils/handlers/error-utils'
 
 import { setAllProductsAC } from './product.slice'
 
@@ -40,9 +43,11 @@ export const AddProductTC = createAsyncThunk(
     try {
       const res = await productService.AddProduct(product)
 
+      toast.success(`${product.title} was successfully added!!`)
       thunkAPI.dispatch(setAllProductsAC({ products: [res.createdProduct] }))
     } catch (e) {
       console.log(e)
+      handleServerNetworkError(e, thunkAPI.dispatch)
     }
   }
 )
