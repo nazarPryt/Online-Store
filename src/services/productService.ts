@@ -9,7 +9,9 @@ export const productService = {
   getAllProducts() {
     return instance.get<ProductDataType[]>(`/api/products`)
   },
-  AddProduct(product: ProductType) {
+  AddProduct(product: any) {
+    console.log('product', product)
+
     return instance.post<ProductType, AddProductResponse>(
       `/api/products`,
       product
@@ -25,7 +27,7 @@ export type ProductDataType = {
   price: number
   oldPrice: number
   quantity: number
-  cover: string
+  cover: any
   imgAll: string[]
   category: string[]
 }

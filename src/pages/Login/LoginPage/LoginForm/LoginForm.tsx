@@ -10,8 +10,8 @@ import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import s from '../LoginPage.module.scss'
 
 const defaultValues: LoginDataType = {
-  email: '',
-  password: '',
+  email: 'ockap90@libero.it',
+  password: '123456',
 }
 
 export const LoginForm = () => {
@@ -45,8 +45,6 @@ export const LoginForm = () => {
           placeholder="&#xF199;   Email"
         />
         {errors.email && <ErrorMessage text={'Email is not valid'} />}
-        {/*{isDirty ||*/}
-        {/*  (touchedFields.email && <ErrorMessage text={'Email is required!'} />)}*/}
       </div>
 
       <input
@@ -62,10 +60,7 @@ export const LoginForm = () => {
           <ErrorMessage text={'Password is required!'} />
         ))}
 
-      <button
-        className={s.buttonSubmit}
-        type="submit"
-        disabled={!isDirty || !isValid}>
+      <button className={s.buttonSubmit} type="submit" disabled={!isValid}>
         Login
       </button>
       <button onClick={handleSetAccordion} type={'button'}>

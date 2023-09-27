@@ -6,11 +6,10 @@ export const handleServerNetworkError = (e: any, dispatch: Dispatch) => {
   const err = e as Error | AxiosError<{ error: string }>
 
   if (axios.isAxiosError(err)) {
-    const error = err.response?.data.error || err.message
+    const error = err.response?.data.message || err.message
 
     toast.error(error)
   } else {
     toast.error(err.message)
   }
-  toast.error('failed')
 }

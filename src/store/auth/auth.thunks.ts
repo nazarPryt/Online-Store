@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 import {
   AuthResponseType,
@@ -19,8 +20,9 @@ export const logInTC = createAsyncThunk(
       await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
       thunkAPI.dispatch(setUserData({ user: res.data.user }))
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
-    } catch (e) {
+    } catch (e: any) {
       console.log(e)
+      toast.error(e.response.data.message)
     }
   }
 )

@@ -41,7 +41,15 @@ export const AddProductTC = createAsyncThunk(
   'product/AddProduct',
   async (product: ProductType, thunkAPI) => {
     try {
-      const res = await productService.AddProduct(product)
+      let formData = new FormData()
+
+      // @ts-ignore
+      formData.append('cover', product.cover[0])
+      const postData = JSON.stringify(product)
+
+      formData.append('postData', postData)
+
+      const res = await productService.AddProduct(formData)
 
       toast.success(`${product.title} was successfully added!!`)
       thunkAPI.dispatch(setAllProductsAC({ products: [res.createdProduct] }))
