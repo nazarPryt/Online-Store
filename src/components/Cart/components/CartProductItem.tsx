@@ -17,13 +17,15 @@ import s from './CartProductItem.module.scss'
 export const CartProductItem = (props: any) => {
   const dispatch = useAppDispatch()
 
+  console.log('props', props)
+
   return (
     <Box
       className={s.item}
       key={props.id}
       bgcolor={(theme) => theme.palette.background.default}>
-      {props.cover ? (
-        <img src={props.cover} alt="productPhoto" />
+      {props.cover.url ? (
+        <img src={props.cover.url} alt="productPhoto" />
       ) : (
         <img src={imgNotFound} alt="productPhoto" />
       )}

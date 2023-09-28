@@ -69,7 +69,7 @@ export const Order = (props: OrderDataType) => {
                     <TableRow key={product._id}>
                       <TableCell component="th" scope="row">
                         <div className={s.productImg}>
-                          <img src={product.cover} alt="product img" />
+                          <img src={product.cover.url} alt="product img" />
                         </div>
                       </TableCell>
                       <TableCell>{product.title}</TableCell>

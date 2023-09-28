@@ -41,7 +41,7 @@ export const ProductCard = (props: ProductDataType) => {
       <CardContent className={s.CardContent}>
         <a href={`${PATH.product}${props._id}`}>
           <Box className={s.imgBox}>
-            <img src={props.cover} alt="product cover" />
+            <img src={props.cover.url} alt="product cover" />
           </Box>
           <p>{props.title}</p>
         </a>

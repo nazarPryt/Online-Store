@@ -27,11 +27,17 @@ export type ProductDataType = {
   price: number
   oldPrice: number
   quantity: number
-  cover: any
+  cover: ProductCoverType
   imgAll: string[]
   category: string[]
 }
 export type AddProductResponse = {
   createdProduct: ProductDataType
   message: string
+}
+export type ProductCoverType = {
+  url: string
+  original_filename: string
+  width: number
+  height: number
 }

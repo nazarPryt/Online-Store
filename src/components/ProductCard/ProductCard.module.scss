@@ -4,7 +4,11 @@
   justify-content: space-between;
 }
 .imgBox {
+  overflow: hidden;
+
+  height: 300px;
   img {
+    object-fit: cover;
   }
 }
 .CardContent {
@@ -21,6 +25,5 @@
   }
   p {
     overflow: hidden;
-
   }
 }

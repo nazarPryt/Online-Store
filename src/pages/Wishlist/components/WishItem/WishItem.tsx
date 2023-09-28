@@ -43,7 +43,7 @@ export const WishItem = (props: ProductDataType) => {
     <TableRow key={props._id} className={s.wrapper}>
       <TableCell align="center" className={s.tableCell}>
         {props.cover ? (
-          <img src={props.cover} alt="item img" />
+          <img src={props.cover.url} alt="item img" />
         ) : (
           <img src={imgNotFound} alt="item img" />
         )}
