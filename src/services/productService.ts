@@ -26,7 +26,7 @@ export type ProductDataType = {
   oldPrice: number
   quantity: number
   cover: ProductCoverType
-  imgAll: string[]
+  imgAll: ProductCoverType[]
   category: string[]
 }
 export type AddProductResponse = {

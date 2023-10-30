@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { ProductDataType } from '../../services/productService'
+import {
+  ProductCoverType,
+  ProductDataType,
+} from '../../services/productService'
 
 const initialState = {
   productItem: {} as ProductDataType,
@@ -12,11 +15,8 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    setProductAC: (
-      state,
-      action: PayloadAction<{ domainData: ProductDataType }>
-    ) => {
-      state.productItem = action.payload.domainData
+    setProductAC: (state, action: PayloadAction<ProductDataType>) => {
+      state.productItem = action.payload
     },
     setAllProductsAC: (
       state,
@@ -24,8 +24,13 @@ export const productSlice = createSlice({
     ) => {
       state.products = action.payload.products
     },
-    setPhotosToShowAC: (state, action: PayloadAction<{ photos: string[] }>) => {
-      state.photosToShow = action.payload.photos
+    setPhotosToShowAC: (state, action: PayloadAction<ProductDataType>) => {
+      const photosToShow: string[] = []
+
+      action.payload.imgAll.forEach((img: ProductCoverType) =>
+        photosToShow.push(img.url)
+      )
+      state.photosToShow = photosToShow
     },
   },
 })

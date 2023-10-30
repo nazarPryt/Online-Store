@@ -1,12 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
 
 import { ProductType } from '../../pages/User/components/AddNewProductForm/AddNewProductForm'
 import { productService } from '../../services/productService'
 import { handleServerNetworkError } from '../../utils/handlers/error-utils'
 
-import { setAllProductsAC } from './product.slice'
+import {
+  setAllProductsAC,
+  setPhotosToShowAC,
+  setProductAC,
+} from './product.slice'
 
 export const getSingleProductTC = createAsyncThunk(
   'product/getProduct',
@@ -14,12 +17,8 @@ export const getSingleProductTC = createAsyncThunk(
     try {
       const res = await productService.getSingleProduct(id)
 
-      console.log('res', res)
-      // const domainData = returnDomainProductType(res.data)
-      // const photos = returnPhotosToShow(domainData)
-      //
-      // thunkAPI.dispatch(setProductAC({ domainData }))
-      // thunkAPI.dispatch(setPhotosToShowAC({ photos }))
+      thunkAPI.dispatch(setProductAC(res.data))
+      thunkAPI.dispatch(setPhotosToShowAC(res.data))
     } catch (e) {
       console.log(e)
     }
