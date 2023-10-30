@@ -10,6 +10,7 @@ export const CategoryPage = () => {
   const dispatch = useAppDispatch()
   const data = useAppSelector((state) => state.product.products)
 
+  console.log('data', data)
   useEffect(() => {
     dispatch(getAllProductsTC())
   }, [])

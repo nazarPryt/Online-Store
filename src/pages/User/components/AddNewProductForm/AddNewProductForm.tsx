@@ -32,7 +32,7 @@ const ProductSchema = object({
   price: yup.number().positive().required(),
   oldPrice: yup.number().positive().required(),
   cover: yup.mixed().required('Required'),
-  imgAll: yup.string().required(),
+  imgAll: yup.mixed(),
   category: yup.string().required(),
 })
 
@@ -51,7 +51,7 @@ export const AddNewProductForm = () => {
       oldPrice: 600,
       title: 'iphone',
       cover: '',
-      imgAll: 'https://picsum.photos/200/300',
+      imgAll: '',
     },
   })
   // const selectValue = watch('category') as string[]
@@ -100,7 +100,7 @@ export const AddNewProductForm = () => {
 
       <label>
         All Images:
-        <input type="file" {...register('imgAll')} />
+        <input type="file" multiple accept="image/*" {...register('imgAll')} />
       </label>
 
       <Button type="submit" variant={'contained'}>

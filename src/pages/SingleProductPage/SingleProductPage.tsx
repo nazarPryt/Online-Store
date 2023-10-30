@@ -25,7 +25,7 @@ export const SingleProductPage = () => {
 
   useEffect(() => {
     if (productId) {
-      dispatch(getSingleProductTC(+productId))
+      dispatch(getSingleProductTC(productId))
     }
   }, [productId])
 

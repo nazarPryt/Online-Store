@@ -10,12 +10,14 @@ import { setAllProductsAC } from './product.slice'
 
 export const getSingleProductTC = createAsyncThunk(
   'product/getProduct',
-  async (id: number, thunkAPI) => {
+  async (id: string, thunkAPI) => {
     try {
       const res = await productService.getSingleProduct(id)
+
+      console.log('res', res)
       // const domainData = returnDomainProductType(res.data)
       // const photos = returnPhotosToShow(domainData)
-
+      //
       // thunkAPI.dispatch(setProductAC({ domainData }))
       // thunkAPI.dispatch(setPhotosToShowAC({ photos }))
     } catch (e) {
@@ -43,8 +45,14 @@ export const AddProductTC = createAsyncThunk(
     try {
       let formData = new FormData()
 
-      // @ts-ignore
+      //@ts-ignore
       formData.append('cover', product.cover[0])
+
+      //@ts-ignore
+      for (const file of product.imgAll) {
+        formData.append('imgAll', file)
+      }
+
       const postData = JSON.stringify(product)
 
       formData.append('postData', postData)

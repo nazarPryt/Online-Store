@@ -3,15 +3,13 @@ import { ProductType } from '../pages/User/components/AddNewProductForm/AddNewPr
 import { instance } from './instance'
 
 export const productService = {
-  getSingleProduct(id: number) {
+  getSingleProduct(id: string) {
     return instance.get<ProductDataType>(`/api/products/${id}`)
   },
   getAllProducts() {
     return instance.get<ProductDataType[]>(`/api/products`)
   },
   AddProduct(product: any) {
-    console.log('product', product)
-
     return instance.post<ProductType, AddProductResponse>(
       `/api/products`,
       product
