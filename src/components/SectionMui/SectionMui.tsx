@@ -3,24 +3,23 @@ import React, { ReactNode } from 'react'
 import { Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-const Wrapper = styled('section')(({ theme }) => ({
+import s from './SectionMui.module.scss'
+
+const SectionMuiWrapper = styled('section')(({ theme }) => ({
   color: theme.palette.text.primary,
   backgroundColor: theme.palette.background.default,
 }))
 
 export const SectionMui = (props: { title?: string; children: ReactNode }) => {
   return (
-    <Wrapper>
+    <SectionMuiWrapper>
       {props.title && (
-        <Typography
-          align={'center'}
-          variant={'h4'}
-          style={{ margin: '20px 0' }}>
+        <Typography className={s.typography} variant={'h1'} align={'center'}>
           {props.title}
         </Typography>
       )}
       {props.children}
-    </Wrapper>
+    </SectionMuiWrapper>
   )
 }
 //TODO implement in all other components

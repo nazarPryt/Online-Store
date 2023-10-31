@@ -4,11 +4,13 @@ import Container from '@mui/material/Container'
 
 import { SectionMui } from '../../components/SectionMui/SectionMui'
 
-export const TermsAndCondition = () => {
+import s from './TermsAndConditionPage.module.scss'
+
+export const TermsAndConditionPage = () => {
   return (
     <SectionMui title={'Terms and Condition'}>
       <Container>
-        <ol>
+        <ol className={s.list}>
           <li>
             What Are Terms and Conditions?
             <p>
