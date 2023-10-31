@@ -14,6 +14,7 @@ import { LoginPage } from './Login/LoginPage/LoginPage'
 import { MyOrders } from './myOrders/myOrders'
 import { SingleProductPage } from './SingleProductPage/SingleProductPage'
 import { SuccessPayment } from './SuccessPayment/SuccessPayment'
+import { TermsAndCondition } from './TermsAndCondition/TermsAndCondition'
 import { UserPage } from './User/UserPage'
 import { Wishlist } from './Wishlist/Wishlist'
 
@@ -21,6 +22,7 @@ export const PATH = {
   login: '/login',
   user: '/user',
   aboutUs: '/about',
+  termsAndCondition: '/TermsAndCondition',
   wishlist: '/wishlist',
   contact: '/contact',
   category: '/category/:id',
@@ -52,6 +54,7 @@ export const Pages = () => {
         <Route path={PATH.errorPayment} element={<ErrorPayment />} />
         <Route path={PATH.myOrders} element={<MyOrders />} />
         <Route path={PATH.aboutUs} element={<AboutUs />} />
+        <Route path={PATH.termsAndCondition} element={<TermsAndCondition />} />
         <Route path={PATH.contact} element={<ContactPage />} />
         <Route path={'*'} element={<NotFoundPage />} />
       </Route>

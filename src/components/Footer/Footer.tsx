@@ -6,6 +6,7 @@ import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 
 import paymentGetWays from '../../assets/payment-getways.png'
+import { PATH } from '../../pages/pages'
 import { DiscountSection } from '../DiscountSection/DiscountSection'
 
 import { FooterMui } from './components/FooterMui'
@@ -26,8 +27,10 @@ export const Footer = () => {
             </div>
             <div>
               <h5>Feature</h5>
-              <Link href={'/'}>About Us</Link>
-              <Link href={'/'}>Terms Condition</Link>
+              <Link href={PATH.aboutUs}>About Us</Link>
+              <Link target={'_blank'} href={PATH.termsAndCondition}>
+                Terms Condition
+              </Link>
               <Link>Best Products</Link>
             </div>
             <div>
