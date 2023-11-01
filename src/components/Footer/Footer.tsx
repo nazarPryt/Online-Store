@@ -36,7 +36,7 @@ export const Footer = () => {
             <div>
               <h5>General Links</h5>
               <Link href={'/'}>Blog</Link>
-              <Link href={'/'}>Tracking Order</Link>
+              <Link href={PATH.trackOrder}>Tracking Order</Link>
               <Link href={'/'}>Become Seller</Link>
             </div>
             <div>

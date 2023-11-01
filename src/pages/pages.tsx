@@ -15,6 +15,7 @@ import { MyOrders } from './myOrders/myOrders'
 import { SingleProductPage } from './SingleProductPage/SingleProductPage'
 import { SuccessPayment } from './SuccessPayment/SuccessPayment'
 import { TermsAndConditionPage } from './TermsAndCondition/TermsAndConditionPage'
+import { TrackOrderPage } from './TrackOrder/TrackOrderPage'
 import { UserPage } from './User/UserPage'
 import { Wishlist } from './Wishlist/Wishlist'
 
@@ -23,6 +24,7 @@ export const PATH = {
   user: '/user',
   aboutUs: '/about',
   termsAndCondition: '/TermsAndCondition',
+  trackOrder: '/trackOrder',
   wishlist: '/wishlist',
   contact: '/contact',
   category: '/category/:id',
@@ -54,6 +56,7 @@ export const Pages = () => {
         <Route path={PATH.errorPayment} element={<ErrorPayment />} />
         <Route path={PATH.myOrders} element={<MyOrders />} />
         <Route path={PATH.aboutUs} element={<AboutUs />} />
+        <Route path={PATH.trackOrder} element={<TrackOrderPage />} />
         <Route
           path={PATH.termsAndCondition}
           element={<TermsAndConditionPage />}
