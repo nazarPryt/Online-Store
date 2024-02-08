@@ -39,7 +39,9 @@ export const appSlice = createSlice({
     },
     SetAppNotificationAC: (
       state,
-      action: PayloadAction<{ notifications: Omit<NotificationType, 'id'> }>
+      action: PayloadAction<{
+        notifications: Omit<NotificationType, 'id'>
+      }>
     ) => {
       const id = GenerateId()
 

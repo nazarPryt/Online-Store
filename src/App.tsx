@@ -5,6 +5,7 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import { ToastContainer } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css'
+
 import { Initialization } from './components/Initialization/Initialization'
 import { Pages } from './pages/pages'
 import { CheckAuthTC } from './store/auth/auth.thunks'
@@ -23,24 +24,22 @@ function App() {
   const theme = createTheme(getDesignTokens(themeApp))
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Pages />
-        <Initialization isInitialization={isInitialized} />
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <Pages />
+      <Initialization isInitialization={isInitialized} />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+    </ThemeProvider>
   )
 }
 

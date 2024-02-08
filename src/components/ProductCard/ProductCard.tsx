@@ -51,7 +51,11 @@ export const ProductCard = (props: ProductDataType) => {
             ${props.price}
           </Typography>
           <Typography
-            sx={{ fontSize: 20, textDecoration: 'line-through', opacity: 0.5 }}>
+            sx={{
+              fontSize: 20,
+              textDecoration: 'line-through',
+              opacity: 0.5,
+            }}>
             ${props.oldPrice}
           </Typography>
           <IconButton

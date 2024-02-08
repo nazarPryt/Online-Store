@@ -25,7 +25,7 @@ export const Categories = [
 
 type CategoriesType = typeof Categories
 
-const ProductSchema = object({
+const ProductSchema = yup.object({
   title: yup.string().required(),
   description: yup.string().required(),
   available: yup.boolean().required(),
@@ -36,13 +36,13 @@ const ProductSchema = object({
   category: yup.string().required(),
 })
 
-export type ProductType = InferType<typeof ProductSchema>
+export type ProductType = yup.InferType<typeof ProductSchema>
 
 export const AddNewProductForm = () => {
   const dispatch = useAppDispatch()
 
   const { register, handleSubmit, watch, setValue } = useForm<ProductType>({
-    resolver: yupResolver(ProductSchema),
+    resolver: yupResolver<ProductType>(ProductSchema),
     defaultValues: {
       available: true,
       category: 'iphone',

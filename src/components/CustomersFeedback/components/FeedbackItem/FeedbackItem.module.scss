@@ -1,18 +1,18 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+
+  max-width: 300px;
+  padding: 20px;
+
+  .swiperWrapper {
+    justify-content: center;
+  }
+  .avatarWrapper {
     display: flex;
-    flex-direction: column;
     gap: 10px;
     align-items: center;
-
-    max-width: 300px;
-    padding: 20px;
-
-    .swiperWrapper {
-        justify-content: center;
-    }
-    .avatarWrapper {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-    }
+  }
 }

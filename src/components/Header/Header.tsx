@@ -223,7 +223,11 @@ export const Header = () => {
             <Box sx={{ flexGrow: 1 }} />
             <Box
               sx={{
-                display: { xs: 'none', md: 'flex', alignItems: 'center' },
+                display: {
+                  xs: 'none',
+                  md: 'flex',
+                  alignItems: 'center',
+                },
               }}>
               <IconButton
                 onClick={handleThemeChange}

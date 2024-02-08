@@ -1,15 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
 
 import { adminReducer } from './admin/admin.slice'
 import { appReducer } from './app/app.slice'
@@ -20,26 +9,10 @@ import { orderReducer } from './orders/order.slice'
 import { productReducer } from './product/product.slice'
 import { wishlistReducer } from './wishlist/wishlist.slice'
 
-const cartPersistConfig = {
-  key: 'cart',
-  version: 1,
-  storage,
-}
-const wishlistPersistConfig = {
-  key: 'wishlist',
-  version: 1,
-  storage,
-}
-const cartPersistedReducer = persistReducer(cartPersistConfig, cartReducer)
-const wishlistPersistedReducer = persistReducer(
-  wishlistPersistConfig,
-  wishlistReducer
-)
-
 export const store = configureStore({
   reducer: {
-    cart: cartPersistedReducer,
-    wishlist: wishlistPersistedReducer,
+    cart: cartReducer,
+    wishlist: wishlistReducer,
     auth: authReducer,
     app: appReducer,
     admin: adminReducer,
@@ -47,17 +20,8 @@ export const store = configureStore({
     category: categoryReducer,
     orders: orderReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })
 
-export let persistor = persistStore(store)
-
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch

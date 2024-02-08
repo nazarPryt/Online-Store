@@ -1,37 +1,37 @@
 .cart {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-    max-width: 400px;
-    padding: 20px;
+  max-width: 400px;
+  padding: 20px;
 
-.emptyText {
+  .emptyText {
     margin-bottom: 20px;
 
     text-align: center;
-}
-    h1 {
-        margin-bottom: 10px;
+  }
+  h1 {
+    margin-bottom: 10px;
 
-        font-size: 24px;
-        font-weight: 400;
-    }
+    font-size: 24px;
+    font-weight: 400;
+  }
 }
 .total {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
-    font-size: 18px;
-    font-weight: 500;
+  font-size: 18px;
+  font-weight: 500;
 }
-.reset{
-    cursor: pointer;
+.reset {
+  cursor: pointer;
 
-    margin-top: 20px;
+  margin-top: 20px;
 
-    font-size: 15px;
-    color: #ec2f2f;
+  font-size: 15px;
+  color: #ec2f2f;
 }

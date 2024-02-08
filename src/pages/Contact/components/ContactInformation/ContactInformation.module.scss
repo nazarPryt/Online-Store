@@ -1,46 +1,44 @@
 .wrapper {
+  width: 100%;
+  padding: 10px;
+
+  div {
+    margin-bottom: 10px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .item {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 7px;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 15px;
+
+    a {
+      white-space: nowrap;
+    }
+  }
+  .addressBox {
     width: 100%;
     padding: 10px;
 
     div {
-        margin-bottom: 10px;
+      display: flex;
+      gap: 5px;
     }
-}
+    .map {
+      width: 100%;
+      height: 100%;
 
-.inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    .item {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        gap: 7px;
-        align-items: center;
-        justify-content: space-around;
-
-        padding: 15px;
-
-        a {
-            white-space: nowrap;
-        }
-
+      border: none;
     }
-    .addressBox {
-        width: 100%;
-        padding: 10px;
-
-        div {
-            display: flex;
-            gap: 5px;
-        }
-        .map {
-            width: 100%;
-            height: 100%;
-
-            border: none;
-        }
-    }
-
+  }
 }
