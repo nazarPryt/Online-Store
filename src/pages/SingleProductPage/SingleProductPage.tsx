@@ -13,6 +13,9 @@ import { getSingleProductTC } from '../../store/product/product.thunk'
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/redux-hooks'
 
 import s from './SingleProductPage.module.scss'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import { addProductToWishList } from '../../store/wishlist/wishlist.slice'
+import { ProductDetails } from '../../components/ProductDetails/ProductDetails'
 
 export const SingleProductPage = () => {
   const data = useAppSelector((state) => state.product.productItem)
@@ -45,7 +48,9 @@ export const SingleProductPage = () => {
   const handleAddQuantity = () => {
     setQuantity((prev) => prev + 1)
   }
-
+  const handleAddToWishList = () => {
+    dispatch(addProductToWishList({ product: data }))
+  }
   return (
     <section className={s.product}>
       <Box className={s.left}>
@@ -68,27 +73,37 @@ export const SingleProductPage = () => {
         <h1>{data.title}</h1>
         <span>${data.price}</span>
         <p>{data.description}</p>
-        <Box className={s.quantity}>
+        <Box className={s.buttonsBox}>
+          <div>
+            <IconButton
+              aria-label="subtract"
+              color="success"
+              onClick={handleSubtractQuantity}>
+              <RemoveIcon />
+            </IconButton>
+            {quantity}
+            <IconButton
+              aria-label="add"
+              color="success"
+              onClick={handleAddQuantity}>
+              <AddIcon />
+            </IconButton>
+          </div>
           <IconButton
-            aria-label="subtract"
-            color="success"
-            onClick={handleSubtractQuantity}>
-            <RemoveIcon />
+            onClick={handleAddToWishList}
+            size="large"
+            color={'secondary'}
+            aria-label="add to favorite">
+            <FavoriteIcon />
           </IconButton>
-          {quantity}
-          <IconButton
-            aria-label="add"
-            color="success"
-            onClick={handleAddQuantity}>
-            <AddIcon />
-          </IconButton>
+          <Button
+            onClick={handleAddToCart}
+            variant="contained"
+            startIcon={<AddShoppingCartIcon />}>
+            Add to Cart
+          </Button>
         </Box>
-        <Button
-          onClick={handleAddToCart}
-          variant="contained"
-          startIcon={<AddShoppingCartIcon />}>
-          Add to Cart
-        </Button>
+        <ProductDetails />
       </Box>
     </section>
   )

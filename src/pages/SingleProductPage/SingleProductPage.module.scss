@@ -38,6 +38,22 @@
     flex: 1;
     flex-direction: column;
     gap: 10px;
+
+    .buttonsBox {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  .product {
+    flex-direction: column;
+
+    .right {
+      align-items: center;
+    }
   }
 }
 

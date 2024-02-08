@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+
+  .userAboutBox {
+    display: flex;
+    gap: 15px;
+  }
+  .userInfoBox {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
