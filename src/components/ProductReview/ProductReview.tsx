@@ -1,8 +1,8 @@
 import Rating from '@mui/material/Rating'
-import { useState } from 'react'
 import s from './ProductReview.module.scss'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
+
 type ProductReviewType = {
   avatar: string
   userName: string

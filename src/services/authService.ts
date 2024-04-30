@@ -1,14 +1,29 @@
 import { instance } from './instance'
+import axios from 'axios'
 
 export const authService = {
-  logIn(data: LoginDataType) {
-    return instance.post<AuthResponseType>('/api/users/login', data)
+  async logIn(data: LoginDataType) {
+    return await instance.post<AuthResponseType>('/api/users/login', data)
   },
-  logOut() {
-    return instance.post<'logout'>('/api/users/logout')
+  async me() {
+    return await instance.get<AuthUserData>('/api/users/me')
   },
-  registration(data: LoginDataType) {
-    return instance.post<AuthResponseType>('/api/users/registration', data)
+  async refreshTokens() {
+    return await axios.get<AuthResponseType>(
+      `${process.env.REACT_APP_BASE_URL}/api/users/refresh`,
+      {
+        withCredentials: true,
+      }
+    )
+  },
+  async logOut() {
+    return await instance.post<'logout'>('/api/users/logout')
+  },
+  async registration(data: LoginDataType) {
+    return await instance.post<AuthResponseType>(
+      '/api/users/registration',
+      data
+    )
   },
 }
 

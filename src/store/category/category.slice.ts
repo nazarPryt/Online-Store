@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 export type CategoryType = {
   id: number
@@ -17,6 +17,6 @@ export const categorySlice = createSlice({
   reducers: {},
 })
 
-export const {} = categorySlice.actions
+// export const {} = categorySlice.actions
 
 export const categoryReducer = categorySlice.reducer

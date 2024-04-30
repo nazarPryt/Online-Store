@@ -18,8 +18,8 @@ export const authSlice = createSlice({
     setIsInitialized: (state, action: PayloadAction<{ value: boolean }>) => {
       state.isInitialized = action.payload.value
     },
-    setUserData: (state, action: PayloadAction<{ user: AuthUserData }>) => {
-      state.user = action.payload.user
+    setUserData: (state, action: PayloadAction<AuthUserData>) => {
+      state.user = action.payload
     },
   },
 })

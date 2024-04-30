@@ -1,6 +1,4 @@
 import React from 'react'
-
-import { Typography } from '@mui/material'
 import Container from '@mui/material/Container'
 
 import { SectionMui } from '../../components/SectionMui/SectionMui'

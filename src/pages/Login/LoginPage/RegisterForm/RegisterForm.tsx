@@ -1,10 +1,7 @@
-import React from 'react'
-
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { RegistrationTC } from '../../../../store/auth/auth.thunks'
 import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import s from '../LoginPage.module.scss'
 
 type Inputs = {
@@ -18,7 +15,7 @@ export const RegisterForm = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, touchedFields, isDirty, isValid },
+    formState: { isDirty, isValid },
   } = useForm<Inputs>({
     defaultValues: {
       email: '',
@@ -51,7 +48,7 @@ export const RegisterForm = () => {
           required: true,
           minLength: 3,
           validate: (val: string) => {
-            if (watch('password') != val) {
+            if (watch('password') !== val) {
               return 'Your passwords do no match'
             }
           },

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { AuthResponseType } from './authService'
+import { authService } from './authService'
 
 export const ACCESS_TOKEN = 'access_token'
 
@@ -30,20 +30,15 @@ instance.interceptors.response.use(
     const originalRequest = error.config
 
     if (
-      error.response.status == 401 &&
+      error.response.status === 401 &&
       error.config &&
       !error.config._isRetry
     ) {
       originalRequest._isRetry = true
       try {
-        const res = await axios.get<AuthResponseType>(
-          `${process.env.REACT_APP_BASE_URL}/api/users/refresh`,
-          {
-            withCredentials: true,
-          }
-        )
+        const res = await authService.refreshTokens()
 
-        await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
+        localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
 
         return instance.request(originalRequest)
       } catch (e) {

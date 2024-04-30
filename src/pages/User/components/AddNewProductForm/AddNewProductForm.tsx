@@ -6,13 +6,11 @@ import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import { InferType, object } from 'yup'
 
 import { AddProductTC } from '../../../../store/product/product.thunk'
 import { useAppDispatch } from '../../../../utils/hooks/redux-hooks'
 
 import s from './AddNewProductForm.module.scss'
-import { MultipleSelect } from './components/MultipleSelect'
 
 export const Categories = [
   'Computers',
@@ -22,8 +20,6 @@ export const Categories = [
   'Electronics',
   'Washing machines',
 ] as const
-
-type CategoriesType = typeof Categories
 
 const ProductSchema = yup.object({
   title: yup.string().required(),
@@ -41,7 +37,7 @@ export type ProductType = yup.InferType<typeof ProductSchema>
 export const AddNewProductForm = () => {
   const dispatch = useAppDispatch()
 
-  const { register, handleSubmit, watch, setValue } = useForm<ProductType>({
+  const { register, handleSubmit } = useForm<ProductType>({
     resolver: yupResolver<ProductType>(ProductSchema),
     defaultValues: {
       available: true,

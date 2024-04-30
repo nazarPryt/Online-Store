@@ -1,12 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 import { toast } from 'react-toastify'
 
-import {
-  AuthResponseType,
-  authService,
-  LoginDataType,
-} from '../../services/authService'
+import { authService, LoginDataType } from '../../services/authService'
 import { ACCESS_TOKEN } from '../../services/instance'
 
 import { setIsInitialized, setIsLoggedIn, setUserData } from './auth.slice'
@@ -18,7 +13,7 @@ export const logInTC = createAsyncThunk(
       const res = await authService.logIn(data)
 
       await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
-      thunkAPI.dispatch(setUserData({ user: res.data.user }))
+      thunkAPI.dispatch(setUserData(res.data.user))
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e: any) {
       console.log(e)
@@ -48,7 +43,7 @@ export const RegistrationTC = createAsyncThunk(
       const res = await authService.registration(data)
 
       await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
-      thunkAPI.dispatch(setUserData({ user: res.data.user }))
+      thunkAPI.dispatch(setUserData(res.data.user))
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)
@@ -61,15 +56,9 @@ export const CheckAuthTC = createAsyncThunk(
   async (arg, thunkAPI) => {
     thunkAPI.dispatch(setIsInitialized({ value: false }))
     try {
-      const res = await axios.get<AuthResponseType>(
-        `${process.env.REACT_APP_BASE_URL}/api/users/refresh`,
-        {
-          withCredentials: true,
-        }
-      )
-
-      await localStorage.setItem(ACCESS_TOKEN, res.data.accessToken)
-      thunkAPI.dispatch(setUserData({ user: res.data.user }))
+      const res = await authService.me()
+      console.log('res', res)
+      thunkAPI.dispatch(setUserData(res.data))
       thunkAPI.dispatch(setIsLoggedIn({ value: true }))
     } catch (e) {
       console.log(e)

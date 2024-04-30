@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import s from '../LoginPage.module.scss'
@@ -11,7 +9,7 @@ export const ForgotPassForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, touchedFields, isDirty, isValid },
+    formState: { isDirty, isValid },
   } = useForm<Inputs>({
     defaultValues: {
       email: '',

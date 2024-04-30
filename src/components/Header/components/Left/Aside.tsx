@@ -1,14 +1,13 @@
 import React from 'react'
 
 import Drawer from '@mui/material/Drawer'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { PATH } from '../../../../pages/pages'
 import { FilterBar } from '../../../SideBar/FilterBar'
 
 export const Aside = (props: { isOpen: boolean; handleClose: () => void }) => {
   let location = useLocation()
-  let id = useParams().id
 
   return (
     <Drawer anchor={'left'} open={props.isOpen} onClose={props.handleClose}>
